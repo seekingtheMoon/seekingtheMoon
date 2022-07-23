@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ekkoqaq.cc","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#FF0000","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="工具： VMware: 16.2.3 Ubuntu: 20.04.4">
+    <meta name="description" content="工具： VMware: 16.2.3 Ubuntu: 20.04.4">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VMware安装Linux虚拟机">
 <meta property="og:url" content="https://ekkoqaq.cc/posts/63938/index.html">
 <meta property="og:site_name" content="Shallow Dream">
-<meta property="og:description" content="工具： VMware: 16.2.3 Ubuntu: 20.04.4">
+<meta property="og:description" content="工具： VMware: 16.2.3 Ubuntu: 20.04.4">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/63938/image-20220322075253344.png">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/63938/image-20220322075329507.png">
@@ -158,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware"><span class="nav-number">1.</span> <span class="nav-text">VMware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">创建虚拟机</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vmware"><span class="nav-number">1.</span> <span class="nav-text">VMware</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">创建虚拟机</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -173,18 +173,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -315,7 +315,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>700</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -339,90 +339,183 @@
 <p>Ubuntu: 20.04.4</p>
 </blockquote>
 <span id="more"></span>
-
 <p><strong>突然心血来潮想捯饬一下，玩一玩</strong></p>
 <p><strong>仅供个人学习交流使用，不得用于任何商业用途，请勿大面积激活</strong></p>
-<h3 id="VMware"><a href="#VMware" class="headerlink" title="VMware"></a>VMware</h3><ol>
+<h3 id="vmware">VMware</h3>
+<ol type="1">
 <li><p>去官网下载，VMware官方对激活放松，所以有效秘钥网上有很多</p>
-<p><a target="_blank" rel="noopener" href="https://www.vmware.com/go/getworkstation-win">https://www.vmware.com/go/getworkstation-win</a></p>
-</li>
+<p>https://www.vmware.com/go/getworkstation-win</p></li>
 <li><p>安装</p>
-<p><img src="/posts/63938/image-20220322075253344.png" alt="image-20220322075253344"></p>
+<figure>
+<img src="/posts/63938/image-20220322075253344.png" alt="image-20220322075253344">
+<figcaption aria-hidden="true">image-20220322075253344</figcaption>
+</figure>
 <p>可以更改安装位置</p>
-<p><img src="/posts/63938/image-20220322075329507.png" alt="image-20220322075329507"></p>
+<figure>
+<img src="/posts/63938/image-20220322075329507.png" alt="image-20220322075329507">
+<figcaption aria-hidden="true">image-20220322075329507</figcaption>
+</figure>
 <p>然后可以一直下一步，直到安装成功，到这里点击许可证</p>
-<p><img src="/posts/63938/image-20220322075640143.png" alt="image-20220322075640143"></p>
+<figure>
+<img src="/posts/63938/image-20220322075640143.png" alt="image-20220322075640143">
+<figcaption aria-hidden="true">image-20220322075640143</figcaption>
+</figure>
 <p>输入即可</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZF3R0-FHED2-M80TY-8QYGC-NPKYF</span><br></pre></td></tr></table></figure>
-
 <p>可以正常使用VMware了</p>
-<p><img src="/posts/63938/image-20220322075932453.png" alt="image-20220322075932453"></p>
-</li>
+<figure>
+<img src="/posts/63938/image-20220322075932453.png" alt="image-20220322075932453">
+<figcaption aria-hidden="true">image-20220322075932453</figcaption>
+</figure></li>
 </ol>
-<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><ol>
+<h3 id="ubuntu">Ubuntu</h3>
+<ol type="1">
 <li><p>去官网下载，选好保存位置，待会儿要用</p>
-<p><a target="_blank" rel="noopener" href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop</a></p>
-<p><img src="/posts/63938/image-20220322080106901.png" alt="image-20220322080106901"></p>
-</li>
+<p>https://ubuntu.com/download/desktop</p>
+<figure>
+<img src="/posts/63938/image-20220322080106901.png" alt="image-20220322080106901">
+<figcaption aria-hidden="true">image-20220322080106901</figcaption>
+</figure></li>
 <li><p>文件夹中可以看到</p>
-<p><img src="/posts/63938/image-20220322080220018.png" alt="image-20220322080220018"></p>
-</li>
+<figure>
+<img src="/posts/63938/image-20220322080220018.png" alt="image-20220322080220018">
+<figcaption aria-hidden="true">image-20220322080220018</figcaption>
+</figure></li>
 </ol>
-<h3 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h3><ol>
+<h3 id="创建虚拟机">创建虚拟机</h3>
+<ol type="1">
 <li><p>打开VMware，点击<strong>创建新的虚拟机</strong></p>
-<p><img src="/posts/63938/image-20220322080310264.png" alt="image-20220322080310264"></p>
-</li>
+<figure>
+<img src="/posts/63938/image-20220322080310264.png" alt="image-20220322080310264">
+<figcaption aria-hidden="true">image-20220322080310264</figcaption>
+</figure></li>
 <li><p>选择<strong>典型</strong>，然后下一步选择<strong>稍后安装操作系统</strong>，然后下一步，</p>
-<p><img src="/posts/63938/image-20220322080352494.png" alt="image-20220322080352494"></p>
-<p><img src="/posts/63938/image-20220322080444907.png" alt="image-20220322080444907"></p>
-<p><strong>客户机操作系统选择Linux</strong>，<strong>版本选择Ubuntu 64 位</strong>，然后下一步</p>
-<p><img src="/posts/63938/image-20220322080638013.png" alt="image-20220322080638013"></p>
+<figure>
+<img src="/posts/63938/image-20220322080352494.png" alt="image-20220322080352494">
+<figcaption aria-hidden="true">image-20220322080352494</figcaption>
+</figure>
+<figure>
+<img src="/posts/63938/image-20220322080444907.png" alt="image-20220322080444907">
+<figcaption aria-hidden="true">image-20220322080444907</figcaption>
+</figure>
+<p><strong>客户机操作系统选择Linux</strong>，<strong>版本选择Ubuntu 64
+位</strong>，然后下一步</p>
+<figure>
+<img src="/posts/63938/image-20220322080638013.png" alt="image-20220322080638013">
+<figcaption aria-hidden="true">image-20220322080638013</figcaption>
+</figure>
 <p>可以更改虚拟机名称，<strong>更改位置，在其他盘建个文件夹放在里面都行，不要放到C盘，不要放到C盘</strong>，然后下一步</p>
-<p><img src="/posts/63938/image-20220322081353241.png" alt="image-20220322081353241"></p>
+<figure>
+<img src="/posts/63938/image-20220322081353241.png" alt="image-20220322081353241">
+<figcaption aria-hidden="true">image-20220322081353241</figcaption>
+</figure>
 <p>给定20G，拆分成多个文件，然后下一步</p>
-<p><img src="/posts/63938/image-20220322081502858.png" alt="image-20220322081502858"></p>
+<figure>
+<img src="/posts/63938/image-20220322081502858.png" alt="image-20220322081502858">
+<figcaption aria-hidden="true">image-20220322081502858</figcaption>
+</figure>
 <p>点击<strong>自定义硬件</strong></p>
-<p><img src="/posts/63938/image-20220322081549128.png" alt="image-20220322081549128"></p>
+<figure>
+<img src="/posts/63938/image-20220322081549128.png" alt="image-20220322081549128">
+<figcaption aria-hidden="true">image-20220322081549128</figcaption>
+</figure>
 <p>依次选择<strong>新CD/DVD(SATA)—使用ISO映像文件—浏览—找到刚刚下载的Ubuntu—选中—打开</strong></p>
-<p><img src="/posts/63938/image-20220322081733714.png" alt="image-20220322081733714"></p>
+<figure>
+<img src="/posts/63938/image-20220322081733714.png" alt="image-20220322081733714">
+<figcaption aria-hidden="true">image-20220322081733714</figcaption>
+</figure>
 <p>选中<strong>网络适配器—仅主机模式</strong></p>
-<p><img src="/posts/63938/image-20220322081951263.png" alt="image-20220322081951263"></p>
+<figure>
+<img src="/posts/63938/image-20220322081951263.png" alt="image-20220322081951263">
+<figcaption aria-hidden="true">image-20220322081951263</figcaption>
+</figure>
 <p><strong>移除USB控制器</strong></p>
-<p><img src="/posts/63938/image-20220322082051674.png" alt="image-20220322082051674"></p>
+<figure>
+<img src="/posts/63938/image-20220322082051674.png" alt="image-20220322082051674">
+<figcaption aria-hidden="true">image-20220322082051674</figcaption>
+</figure>
 <p>然后关闭，点击完成</p>
-<p><img src="/posts/63938/image-20220322082209826.png" alt="image-20220322082209826"></p>
-<p><img src="/posts/63938/image-20220322082223180.png" alt="image-20220322082223180"></p>
-</li>
+<figure>
+<img src="/posts/63938/image-20220322082209826.png" alt="image-20220322082209826">
+<figcaption aria-hidden="true">image-20220322082209826</figcaption>
+</figure>
+<figure>
+<img src="/posts/63938/image-20220322082223180.png" alt="image-20220322082223180">
+<figcaption aria-hidden="true">image-20220322082223180</figcaption>
+</figure></li>
 <li><p>之后开机即可</p>
-<p><img src="/posts/63938/image-20220322082319188.png" alt="image-20220322082319188"></p>
+<figure>
+<img src="/posts/63938/image-20220322082319188.png" alt="image-20220322082319188">
+<figcaption aria-hidden="true">image-20220322082319188</figcaption>
+</figure>
 <p>等待</p>
-<p><img src="/posts/63938/image-20220322082441586.png" alt="image-20220322082441586"></p>
+<figure>
+<img src="/posts/63938/image-20220322082441586.png" alt="image-20220322082441586">
+<figcaption aria-hidden="true">image-20220322082441586</figcaption>
+</figure>
 <p>安装Ubuntu</p>
-<p><img src="/posts/63938/image-20220322083348680.png" alt="image-20220322083348680"></p>
+<figure>
+<img src="/posts/63938/image-20220322083348680.png" alt="image-20220322083348680">
+<figcaption aria-hidden="true">image-20220322083348680</figcaption>
+</figure>
 <p>键盘布局</p>
-<p><img src="/posts/63938/image-20220322083428322.png" alt="image-20220322083428322"></p>
+<figure>
+<img src="/posts/63938/image-20220322083428322.png" alt="image-20220322083428322">
+<figcaption aria-hidden="true">image-20220322083428322</figcaption>
+</figure>
 <p>继续</p>
-<p><img src="/posts/63938/image-20220322083638611.png" alt="image-20220322083638611"></p>
-<p><img src="/posts/63938/image-20220322084014994.png" alt="image-20220322084014994"></p>
-<p><img src="/posts/63938/image-20220322084102551.png" alt="image-20220322084102551"></p>
-<p><img src="/posts/63938/image-20220322084127562.png" alt="image-20220322084127562"></p>
-<p><img src="/posts/63938/image-20220322084230481.png" alt="image-20220322084230481"></p>
+<figure>
+<img src="/posts/63938/image-20220322083638611.png" alt="image-20220322083638611">
+<figcaption aria-hidden="true">image-20220322083638611</figcaption>
+</figure>
+<figure>
+<img src="/posts/63938/image-20220322084014994.png" alt="image-20220322084014994">
+<figcaption aria-hidden="true">image-20220322084014994</figcaption>
+</figure>
+<figure>
+<img src="/posts/63938/image-20220322084102551.png" alt="image-20220322084102551">
+<figcaption aria-hidden="true">image-20220322084102551</figcaption>
+</figure>
+<figure>
+<img src="/posts/63938/image-20220322084127562.png" alt="image-20220322084127562">
+<figcaption aria-hidden="true">image-20220322084127562</figcaption>
+</figure>
+<figure>
+<img src="/posts/63938/image-20220322084230481.png" alt="image-20220322084230481">
+<figcaption aria-hidden="true">image-20220322084230481</figcaption>
+</figure>
 <p>等</p>
-<p><img src="/posts/63938/image-20220322084250777.png" alt="image-20220322084250777"></p>
+<figure>
+<img src="/posts/63938/image-20220322084250777.png" alt="image-20220322084250777">
+<figcaption aria-hidden="true">image-20220322084250777</figcaption>
+</figure>
 <p>重启虚拟机</p>
-<p><img src="/posts/63938/image-20220322084731011.png" alt="image-20220322084731011"></p>
+<figure>
+<img src="/posts/63938/image-20220322084731011.png" alt="image-20220322084731011">
+<figcaption aria-hidden="true">image-20220322084731011</figcaption>
+</figure>
 <p>重启可能会看到这个</p>
-<p><img src="/posts/63938/image-20220322091131490.png" alt="image-20220322091131490"></p>
+<figure>
+<img src="/posts/63938/image-20220322091131490.png" alt="image-20220322091131490">
+<figcaption aria-hidden="true">image-20220322091131490</figcaption>
+</figure>
 <p>只需要在当前界面，设备状态中的<strong>启动时连接</strong>把勾去了，然后回到虚拟机按下回车</p>
-<p><img src="/posts/63938/image-20220322091438507.png" alt="image-20220322091438507"></p>
+<figure>
+<img src="/posts/63938/image-20220322091438507.png" alt="image-20220322091438507">
+<figcaption aria-hidden="true">image-20220322091438507</figcaption>
+</figure>
 <p>之后完成安装</p>
-<p><img src="/posts/63938/image-20220322091755396.png" alt="image-20220322091755396"></p>
+<figure>
+<img src="/posts/63938/image-20220322091755396.png" alt="image-20220322091755396">
+<figcaption aria-hidden="true">image-20220322091755396</figcaption>
+</figure>
 <p>之后桌面右键setting可以自行个性化设置</p>
-<p>不建议安装的时候选择中文，中文比字母大一些，有些按键会被挡住（别问我怎么知道</p>
-</li>
+<p>不建议安装的时候选择中文，中文比字母大一些，有些按键会被挡住（别问我怎么知道</p></li>
 </ol>
 <p>感谢读到这里，希望喜欢！！</p>
-<center>end！</center>
+<center>
+end！
+</center>
 
     </div>
 
@@ -480,14 +573,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">33k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">26 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
@@ -512,7 +605,13 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"禁止任何政治言论！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/63938/"}</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"别乱说话！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/63938/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 

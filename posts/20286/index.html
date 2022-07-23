@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ekkoqaq.cc","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#FF0000","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="秉持着学了计算机就是拿来用的，所以对于物理实验的绘图可以借助MATLAB更加方便，快捷，美观的制图 这篇文章不是MATLAB教程，读后只能掌握简单的作图，但是应付物理实验作图是够用的(对我来说) 当然，首先需要问问你的老师可不可以计算机绘图(我们老师是可以的，并且是推荐的) 工具： MATLAB: R2021b">
+    <meta name="description" content="秉持着学了计算机就是拿来用的，所以对于物理实验的绘图可以借助MATLAB更加方便，快捷，美观的制图 这篇文章不是MATLAB教程，读后只能掌握简单的作图，但是应付物理实验作图是够用的(对我来说) 当然，首先需要问问你的老师可不可以计算机绘图(我们老师是可以的，并且是推荐的) 工具： MATLAB: R2021b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用MATLAB进行物理实验制图">
 <meta property="og:url" content="https://ekkoqaq.cc/posts/20286/index.html">
 <meta property="og:site_name" content="Shallow Dream">
-<meta property="og:description" content="秉持着学了计算机就是拿来用的，所以对于物理实验的绘图可以借助MATLAB更加方便，快捷，美观的制图 这篇文章不是MATLAB教程，读后只能掌握简单的作图，但是应付物理实验作图是够用的(对我来说) 当然，首先需要问问你的老师可不可以计算机绘图(我们老师是可以的，并且是推荐的) 工具： MATLAB: R2021b">
+<meta property="og:description" content="秉持着学了计算机就是拿来用的，所以对于物理实验的绘图可以借助MATLAB更加方便，快捷，美观的制图 这篇文章不是MATLAB教程，读后只能掌握简单的作图，但是应付物理实验作图是够用的(对我来说) 当然，首先需要问问你的老师可不可以计算机绘图(我们老师是可以的，并且是推荐的) 工具： MATLAB: R2021b">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/20286/image-20220418150259247.png">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/20286/image-20220418150341405.png">
@@ -175,18 +175,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -311,7 +311,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>2.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -337,10 +337,10 @@
 <p>MATLAB: R2021b</p>
 </blockquote>
 <span id="more"></span>
-
 <p>开篇废话：</p>
 <p><strong><del>本质还是搭积木</del></strong></p>
-<p>绘图的基本原理就是给 x 和 y 的数据，然后描点连线，对于实验数据而言，还能通过线性回归拟合直线，从而画出图像</p>
+<p>绘图的基本原理就是给 x 和 y
+的数据，然后描点连线，对于实验数据而言，还能通过线性回归拟合直线，从而画出图像</p>
 <p>所以接下来会依次介绍</p>
 <blockquote>
 <p>数据录入</p>
@@ -348,127 +348,167 @@
 <p>作图相关</p>
 </blockquote>
 <p>下面制图以 “电子元件伏安特性测量实验” 为例</p>
-<h3 id="实验数据的录入"><a href="#实验数据的录入" class="headerlink" title="实验数据的录入"></a>实验数据的录入</h3><p>进入MATLAB基本界面</p>
-<img src="/posts/20286/image-20220418150259247.png" alt="image-20220418150259247" style="zoom: 25%;">
-
+<h3 id="实验数据的录入">实验数据的录入</h3>
+<p>进入MATLAB基本界面</p>
+<p><img src="/posts/20286/image-20220418150259247.png" alt="image-20220418150259247" style="zoom: 25%;"></p>
 <p>鼠标移至右侧工作区处右键，然后点击“新建”</p>
-<img src="/posts/20286/image-20220418150341405.png" alt="image-20220418150341405" style="zoom: 33%;">
-
-<img src="/posts/20286/image-20220418150410517.png" alt="image-20220418150410517" style="zoom: 33%;">
-
+<p><img src="/posts/20286/image-20220418150341405.png" alt="image-20220418150341405" style="zoom: 33%;"></p>
+<p><img src="/posts/20286/image-20220418150410517.png" alt="image-20220418150410517" style="zoom: 33%;"></p>
 <p>可以更改数据的名称，例如这里更改为 ’ U ’</p>
-<img src="/posts/20286/image-20220418152928066.png" alt="image-20220418152928066">
-
-<p><img src="/posts/20286/image-20220418152956743.png" alt="image-20220418152956743"></p>
+<p><img src="/posts/20286/image-20220418152928066.png" alt="image-20220418152928066"></p>
+<figure>
+<img src="/posts/20286/image-20220418152956743.png" alt="image-20220418152956743">
+<figcaption aria-hidden="true">image-20220418152956743</figcaption>
+</figure>
 <p>双击变量名称左侧 “田字格” ，可以打开一个类似于Excel表格的页面</p>
-<img src="/posts/20286/image-20220418153130430.png" alt="image-20220418153130430" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418153130430.png" alt="image-20220418153130430" style="zoom:50%;"></p>
 <p>在表格中依次输入数据</p>
-<p><img src="/posts/20286/image-20220418153059353.png" alt="image-20220418153059353"></p>
+<figure>
+<img src="/posts/20286/image-20220418153059353.png" alt="image-20220418153059353">
+<figcaption aria-hidden="true">image-20220418153059353</figcaption>
+</figure>
 <p>对另一个变量 “ I ”，同样进行上述操作</p>
-<img src="/posts/20286/image-20220418153432285.png" alt="image-20220418153432285" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418153432285.png" alt="image-20220418153432285" style="zoom:50%;"></p>
 <p>完成所有的实验数据录入</p>
-<h3 id="拟合直线"><a href="#拟合直线" class="headerlink" title="拟合直线"></a>拟合直线</h3><p>点击上方 “APP” 按钮，在里面找到圆圈中这个图标(<strong>中文找“曲线拟合”，英文找“curve fitting”，一定要这个图标</strong>)</p>
-<p><img src="/posts/20286/image-20220418153801223.png" alt="image-20220418153801223"></p>
+<h3 id="拟合直线">拟合直线</h3>
+<p>点击上方 “APP”
+按钮，在里面找到圆圈中这个图标(<strong>中文找“曲线拟合”，英文找“curve
+fitting”，一定要这个图标</strong>)</p>
+<figure>
+<img src="/posts/20286/image-20220418153801223.png" alt="image-20220418153801223">
+<figcaption aria-hidden="true">image-20220418153801223</figcaption>
+</figure>
 <p>点击进入如下页面</p>
-<img src="/posts/20286/image-20220418154045385.png" alt="image-20220418154045385" style="zoom:50%;">
-
-<p>然后看左侧红框，第一个是起名字(可改可不改，看心情)，第二个是 x 轴数据，第三个是 y 轴数据，点击下三角，选择相应的数据即可</p>
-<img src="/posts/20286/image-20220418154646413.png" alt="image-20220418154646413" style="zoom:50%;">
-
-<p>选择好后就是如图的效果，之后<strong>不要关闭这个页面(推荐)<strong>或者</strong>截屏记录一下红框处的东西</strong></p>
-<img src="/posts/20286/image-20220418154930010.png" alt="image-20220418154930010" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418154045385.png" alt="image-20220418154045385" style="zoom:50%;"></p>
+<p>然后看左侧红框，第一个是起名字(可改可不改，看心情)，第二个是 x
+轴数据，第三个是 y 轴数据，点击下三角，选择相应的数据即可</p>
+<p><img src="/posts/20286/image-20220418154646413.png" alt="image-20220418154646413" style="zoom:50%;"></p>
+<p>选择好后就是如图的效果，之后<strong>不要关闭这个页面(推荐)</strong>或者<strong>截屏记录一下红框处的东西</strong></p>
+<p><img src="/posts/20286/image-20220418154930010.png" alt="image-20220418154930010" style="zoom:50%;"></p>
 <p>完成直线拟合</p>
-<h3 id="作图相关"><a href="#作图相关" class="headerlink" title="作图相关"></a>作图相关</h3><p><del>现在开始激动人心的作图环节，想想别人需要那这尺子，数格子，描点，画错了擦了重画，哎呀画歪了…</del></p>
+<h3 id="作图相关">作图相关</h3>
+<p><del>现在开始激动人心的作图环节，想想别人需要那这尺子，数格子，描点，画错了擦了重画，哎呀画歪了...</del></p>
 <p><strong>科学技术真好</strong></p>
 <p>回到当前页面，将在这里完成绘图</p>
-<h4 id="数据的处理"><a href="#数据的处理" class="headerlink" title="数据的处理"></a>数据的处理</h4><img src="/posts/20286/image-20220418155448392.png" alt="image-20220418155448392" style="zoom:50%;">
-
-<p>首先，我们需要<strong>重新定义两个变量</strong>，x和y (可以任意选择，但是<strong>不能和前面的变量重名</strong>) (这里之所以要重新定义两个变量就是本质其实是<strong>两根线，一条是实验数据，一条是拟合直线，分别的x和y值我们都要准备好</strong>，才能描点连线不是？)</p>
+<h4 id="数据的处理">数据的处理</h4>
+<p><img src="/posts/20286/image-20220418155448392.png" alt="image-20220418155448392" style="zoom:50%;"></p>
+<p>首先，我们需要<strong>重新定义两个变量</strong>，x和y
+(可以任意选择，但是<strong>不能和前面的变量重名</strong>)
+(这里之所以要重新定义两个变量就是本质其实是<strong>两根线，一条是实验数据，一条是拟合直线，分别的x和y值我们都要准备好</strong>，才能描点连线不是？)</p>
 <p>通过观察实验数据发现，U值的范围是[0.7,6.8]，所以x的范围也应该是[0.7,6.8]，但是<strong>为了留下余量，方面后期操作，x的范围最好大一点，所以这里我们取x[0,8]</strong></p>
-<p>所以，在命令行中输入 x = 左边界 : 右边界 ;   (<strong>分号千万不能忘</strong>)</p>
+<p>所以，在命令行中输入 x = 左边界 : 右边界 ;
+(<strong>分号千万不能忘</strong>)</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">0</span>:<span class="number">8</span>; # 这里千万记得要打上分号 然后回车</span><br></pre></td></tr></table></figure>
-
 <p>效果如图</p>
-<p><img src="/posts/20286/image-20220418160606009.png" alt="image-20220418160606009"></p>
-<p>然后处理 y 轴，这里我们需要刚刚拟合直线的红框框里的数据（x-y是拟合直线）</p>
-<p>命令行输入 y = p1.*x + p2;    (p1和p2在如图位置)，<strong>乘号前面的小数点不能忘，千万不能忘，还有分号也不能忘</strong>（至于为啥需要小数点，先不要问，照做就好，不知道不影响画图不要纠结这里照做就好，感兴趣可以自学MATLAB）</p>
+<figure>
+<img src="/posts/20286/image-20220418160606009.png" alt="image-20220418160606009">
+<figcaption aria-hidden="true">image-20220418160606009</figcaption>
+</figure>
+<p>然后处理 y
+轴，这里我们需要刚刚拟合直线的红框框里的数据（x-y是拟合直线）</p>
+<p>命令行输入 y = p1.*x + p2;
+(p1和p2在如图位置)，<strong>乘号前面的小数点不能忘，千万不能忘，还有分号也不能忘</strong>（至于为啥需要小数点，先不要问，照做就好，不知道不影响画图不要纠结这里照做就好，感兴趣可以自学MATLAB）</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="number">9.569</span>.*x<span class="number">-0.4602</span>;	# 不能忘回车，而且注意乘号前面有一个小数点 . 不能忘不能忘</span><br></pre></td></tr></table></figure>
-
 <p>效果如图</p>
-<p><img src="/posts/20286/image-20220418162129103.png" alt="image-20220418162129103"></p>
-<h4 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h4><p><strong>先学两个基本操作</strong></p>
-<h5 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h5><p>使用 plot()</p>
+<figure>
+<img src="/posts/20286/image-20220418162129103.png" alt="image-20220418162129103">
+<figcaption aria-hidden="true">image-20220418162129103</figcaption>
+</figure>
+<h4 id="画图">画图</h4>
+<p><strong>先学两个基本操作</strong></p>
+<h5 id="画线">画线</h5>
+<p>使用 plot()</p>
 <p>plot(横坐标变量，纵坐标变量)</p>
 <p>先画实验数据，这里不用打分号</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(U,I)</span><br></pre></td></tr></table></figure>
-
-<h5 id="画点"><a href="#画点" class="headerlink" title="画点"></a>画点</h5><p>使用 plot()</p>
+<h5 id="画点">画点</h5>
+<p>使用 plot()</p>
 <p>plot(横坐标，纵坐标，样式) 坐标一般已知，直接输入数字就好</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(<span class="number">1</span>,<span class="number">2</span>,‘o’)</span><br></pre></td></tr></table></figure>
-
-<img src="/posts/20286/image-20220418173420911.png" alt="image-20220418173420911" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418173420911.png" alt="image-20220418173420911" style="zoom:50%;"></p>
 <p>之后可以更改所绘制的线和点的样式，颜色，大小</p>
 <hr>
 <p>回车后弹出新页面</p>
-<img src="/posts/20286/image-20220418163017086.png" alt="image-20220418163017086" style="zoom:50%;">
-
-<p>然后千万不能忘，点击 “箭头” 图标，点了才能对图进行一些我们想要的操作</p>
-<p><img src="/posts/20286/image-20220418163149942.png" alt="image-20220418163149942"></p>
+<p><img src="/posts/20286/image-20220418163017086.png" alt="image-20220418163017086" style="zoom:50%;"></p>
+<p>然后千万不能忘，点击 “箭头”
+图标，点了才能对图进行一些我们想要的操作</p>
+<figure>
+<img src="/posts/20286/image-20220418163149942.png" alt="image-20220418163149942">
+<figcaption aria-hidden="true">image-20220418163149942</figcaption>
+</figure>
 <p>然后对应的制图要求，在图像上单击鼠标右键，点击“网格”</p>
-<img src="/posts/20286/image-20220418163810501.png" alt="image-20220418163810501" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418163810501.png" alt="image-20220418163810501" style="zoom:50%;"></p>
 <p>设置字体，我们老师的要求是仿宋，字体选大一点好看</p>
-<p><img src="/posts/20286/image-20220418164130747.png" alt="image-20220418164130747"></p>
+<figure>
+<img src="/posts/20286/image-20220418164130747.png" alt="image-20220418164130747">
+<figcaption aria-hidden="true">image-20220418164130747</figcaption>
+</figure>
 <p>随后鼠标点击曲线，随后右键，可以更改线型，线宽，标记样式，标记大小</p>
-<p><img src="/posts/20286/image-20220418164406507.png" alt="image-20220418164406507"></p>
+<figure>
+<img src="/posts/20286/image-20220418164406507.png" alt="image-20220418164406507">
+<figcaption aria-hidden="true">image-20220418164406507</figcaption>
+</figure>
 <p>标记样式选用 ‘ × ’(请按要求随意)，大小18 ，更改颜色红色</p>
-<p><img src="/posts/20286/image-20220418165040152.png" alt="image-20220418165040152"></p>
+<figure>
+<img src="/posts/20286/image-20220418165040152.png" alt="image-20220418165040152">
+<figcaption aria-hidden="true">image-20220418165040152</figcaption>
+</figure>
 <p>一般实验数据是标点，所以线型选无，线宽好看即可</p>
-<p><img src="/posts/20286/image-20220418165348703.png" alt="image-20220418165348703"></p>
+<figure>
+<img src="/posts/20286/image-20220418165348703.png" alt="image-20220418165348703">
+<figcaption aria-hidden="true">image-20220418165348703</figcaption>
+</figure>
 <p>然后不要关闭页面，回到命令行界面</p>
-<p>输入 hold on，然后回车，同样的不要问为什么，不影响你作图，照做就好，感兴趣去自学MATLAB，然后就明白了</p>
+<p>输入 hold
+on，然后回车，同样的不要问为什么，不影响你作图，照做就好，感兴趣去自学MATLAB，然后就明白了</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hold</span> on</span><br></pre></td></tr></table></figure>
-
 <p>如图所示</p>
-<img src="/posts/20286/image-20220418170029438.png" alt="image-20220418170029438" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418170029438.png" alt="image-20220418170029438" style="zoom:50%;"></p>
 <p>然后绘制拟合直线(x-y)，同样的</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y)</span><br></pre></td></tr></table></figure>
-
 <p>如图</p>
-<img src="/posts/20286/image-20220418170200938.png" alt="image-20220418170200938" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418170200938.png" alt="image-20220418170200938" style="zoom:50%;"></p>
 <p>然后回到绘图的界面</p>
-<img src="/posts/20286/image-20220418170228353.png" alt="image-20220418170228353" style="zoom:50%;">
-
+<p><img src="/posts/20286/image-20220418170228353.png" alt="image-20220418170228353" style="zoom:50%;"></p>
 <p>修改线型，线宽，颜色</p>
-<img src="/posts/20286/image-20220418170457797.png" alt="image-20220418170457797" style="zoom:50%;">
-
-<p>然后点击 “箭头” 图标，然后可以通过拖动鼠标，滑动鼠标滚轮进行图线的移动缩放来调整到一个舒服好看的样子</p>
-<p><img src="/posts/20286/image-20220418170808549.png" alt="image-20220418170808549"></p>
-<p>然后再点击 “箭头” 图标，然后右键，显示图例，同样可以拖动到好看的位置</p>
-<p><img src="/posts/20286/image-20220418171144264.png" alt="image-20220418171144264"></p>
+<p><img src="/posts/20286/image-20220418170457797.png" alt="image-20220418170457797" style="zoom:50%;"></p>
+<p>然后点击 “箭头”
+图标，然后可以通过拖动鼠标，滑动鼠标滚轮进行图线的移动缩放来调整到一个舒服好看的样子</p>
+<figure>
+<img src="/posts/20286/image-20220418170808549.png" alt="image-20220418170808549">
+<figcaption aria-hidden="true">image-20220418170808549</figcaption>
+</figure>
+<p>然后再点击 “箭头”
+图标，然后右键，显示图例，同样可以拖动到好看的位置</p>
+<figure>
+<img src="/posts/20286/image-20220418171144264.png" alt="image-20220418171144264">
+<figcaption aria-hidden="true">image-20220418171144264</figcaption>
+</figure>
 <p>然后在上方选中 “插入”，插入标题，X标签，Y标签，输入相关信息</p>
-<p><img src="/posts/20286/image-20220418171627741.png" alt="image-20220418171627741"></p>
-<p>然后继续选择 “插入”，添加文本框，输入信息（依据先前的<strong>红框框</strong>）</p>
-<p><img src="/posts/20286/image-20220418172356752.png" alt="image-20220418172356752"></p>
+<figure>
+<img src="/posts/20286/image-20220418171627741.png" alt="image-20220418171627741">
+<figcaption aria-hidden="true">image-20220418171627741</figcaption>
+</figure>
+<p>然后继续选择
+“插入”，添加文本框，输入信息（依据先前的<strong>红框框</strong>）</p>
+<figure>
+<img src="/posts/20286/image-20220418172356752.png" alt="image-20220418172356752">
+<figcaption aria-hidden="true">image-20220418172356752</figcaption>
+</figure>
 <p>然后可以为界面，右键—颜色，添加一些背景颜色，不要特别明显，加一点点淡淡的颜色就好</p>
-<p><img src="/posts/20286/image-20220418172635816.png" alt="image-20220418172635816"></p>
+<figure>
+<img src="/posts/20286/image-20220418172635816.png" alt="image-20220418172635816">
+<figcaption aria-hidden="true">image-20220418172635816</figcaption>
+</figure>
 <p>作图结束，鼠标移动到右上角，点击第一个保存按钮，起名字，选位置，然后保存图片</p>
-<img src="/posts/20286/image-20220418172941602.png" alt="image-20220418172941602" style="zoom:50%;">
-
-<img src="/posts/20286/image-20220418173000726.png" alt="image-20220418173000726" style="zoom:50%;">
-
-
-
+<p><img src="/posts/20286/image-20220418172941602.png" alt="image-20220418172941602" style="zoom:50%;"></p>
+<p><img src="/posts/20286/image-20220418173000726.png" alt="image-20220418173000726" style="zoom:50%;"></p>
 <p>到此全部结束，熟练掌握你会发现不一样的快乐，<del>比如不用买3毛钱一张的坐标纸和用尺子和铅笔画图然后画错然后擦了重画这件事</del></p>
 <p><strong><del>科技改变生活啊</del></strong></p>
 <p>感谢读到这里，希望喜欢！！</p>
-<center>end！</center>
+<center>
+end！
+</center>
 
     </div>
 
@@ -526,14 +566,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">33k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">26 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
@@ -558,7 +598,13 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"禁止任何政治言论！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/20286/"}</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"别乱说话！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/20286/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 

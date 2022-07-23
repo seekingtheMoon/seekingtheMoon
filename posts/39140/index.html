@@ -140,18 +140,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -308,26 +308,26 @@
 <p>语言：Java</p>
 </blockquote>
 <span id="more"></span>
-
-<h3 id="位"><a href="#位" class="headerlink" title="位"></a>位</h3><p>位(bit)(比特)(Binary Digits)：存放一位二进制数，0或者1</p>
+<h3 id="位">位</h3>
+<p>位(bit)(比特)(Binary Digits)：存放一位二进制数，0或者1</p>
 <p>字节(B)(Byte)：一个字节占8位。</p>
-<h3 id="位的基本操作"><a href="#位的基本操作" class="headerlink" title="位的基本操作"></a>位的基本操作</h3><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/bit-operation.html">https://www.runoob.com/w3cnote/bit-operation.html</a>    这篇教程介绍的比较详细了，这里不过多赘述</p>
-<h4 id="打印一个整数的32位"><a href="#打印一个整数的32位" class="headerlink" title="打印一个整数的32位"></a>打印一个整数的32位</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*打印一个整数的所有32位*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">31</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        System.out.print((num &amp; (<span class="number">1</span> &lt;&lt; i)) == <span class="number">0</span> ? <span class="string">&quot;0&quot;</span> : <span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="位的基本操作">位的基本操作</h3>
+<p>https://www.runoob.com/w3cnote/bit-operation.html
+这篇教程介绍的比较详细了，这里不过多赘述</p>
+<h4 id="打印一个整数的32位">打印一个整数的32位</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*打印一个整数的所有32位*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">31</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        System.out.print((num &amp; (<span class="number">1</span> &lt;&lt; i)) == <span class="number">0</span> ? <span class="string">&quot;0&quot;</span> : <span class="string">&quot;1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>特殊的，在 Java 中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;		带符号位右移</span><br><span class="line">&gt;&gt;&gt;		不带符号位右移</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> -<span class="number">5</span>;</span><br><span class="line">print(num);</span><br><span class="line">print(num &gt;&gt; <span class="number">2</span>);</span><br><span class="line">print(num &gt;&gt;&gt; <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line">Output:</span><br><span class="line"><span class="number">11111111111111111111111111111011</span></span><br><span class="line"><span class="number">11111111111111111111111111111110</span></span><br><span class="line"><span class="number">00111111111111111111111111111110</span></span><br></pre></td></tr></table></figure>
-
 <p>但是如果仅仅是符号位+31位，对于 0 来说就会存在 +0 和 -0 的情况。</p>
 <p>+0 = 0000 0000 0000 0000 0000 0000 0000 0000</p>
 <p>-0 = 1000 0000 0000 0000 0000 0000 0000 0000</p>
 <p>而且对于运算操作就要分两套逻辑进行，这样在运行时就会影响效率，为了避免这种情况，改变了负数的表示</p>
 <p>负数 = 正数取反 + 1</p>
-<p>0000 0000 0000 0000 0000 0000 0000 0101    （+5）</p>
-<p>1111 1111 1111 1111 1111 1111 1111 1010    （~（+5））</p>
-<p>1111 1111 1111 1111 1111 1111 1111 1011    （~（+5）+ 1）也就是 -5</p>
+<p>0000 0000 0000 0000 0000 0000 0000 0101 （+5）</p>
+<p>1111 1111 1111 1111 1111 1111 1111 1010 （~（+5））</p>
+<p>1111 1111 1111 1111 1111 1111 1111 1011 （~（+5）+ 1）也就是 -5</p>
 <p>其中，0和-2147483648取反加一等于自身，可以自己尝试</p>
 
     </div>
@@ -386,14 +386,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">33k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">26 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
@@ -418,7 +418,13 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"禁止任何政治言论！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/39140/"}</script>
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"别乱说话！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/39140/"}</script>
 <script>
 document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.waline.el).then(() => 
