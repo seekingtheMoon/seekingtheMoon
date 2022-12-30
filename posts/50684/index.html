@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-ms/font-awesome/5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-ms/animate.css/3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/black/pace-theme-loading-bar.css">
+  <script src="https://unpkg.com/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ekkoqaq.cc","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#FF0000","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="自学笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0x01 计算机系统概述">
+<meta property="og:url" content="https://ekkoqaq.cc/posts/50684/index.html">
+<meta property="og:site_name" content="Shallow Dream">
+<meta property="og:description" content="自学笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230190327425.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230193506178.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230194633487.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230195114462.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230200250717.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230200925021.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230201813812.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230201937190.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230202300451.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230202947464.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230204110498.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230204717402.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/50684/image-20221230211119602.png">
+<meta property="article:published_time" content="2022-12-30T13:27:58.000Z">
+<meta property="article:modified_time" content="2022-12-30T13:31:01.967Z">
+<meta property="article:author" content="Ekko">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ekkoqaq.cc/posts/50684/image-20221230190327425.png">
+
+
+<link rel="canonical" href="https://ekkoqaq.cc/posts/50684/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ekkoqaq.cc/posts/50684/","path":"posts/50684/","title":"0x01 计算机系统概述"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>0x01 计算机系统概述 | Shallow Dream</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://comments.ekkoqaq.cc/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shallow Dream</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep It Simple and Stupid!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">计算机的发展历程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">1.1.</span> <span class="nav-text">硬件软件的发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">电子计算机的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">计算机系统的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="nav-number">2.1.</span> <span class="nav-text">计算机硬件的基本组成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.1.1.</span> <span class="nav-text">存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="nav-number">2.1.2.</span> <span class="nav-text">运算器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">2.1.3.</span> <span class="nav-text">控制器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">冯·诺依曼计算机结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">现代计算机组织结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">计算机的工作过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-number">3.</span> <span class="nav-text">计算机的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%97%E9%95%BF"><span class="nav-number">3.1.</span> <span class="nav-text">机器字长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%AD%98%E5%AE%B9%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">主存容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E9%80%9F%E5%BA%A6"><span class="nav-number">3.3.</span> <span class="nav-text">运算速度</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ekko"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ekko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我来人间凑个数(这是个集合)
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://monster-siren.hypergryph.com/" title="https:&#x2F;&#x2F;monster-siren.hypergryph.com&#x2F;" rel="noopener" target="_blank">塞壬唱片</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imgod.me/" title="https:&#x2F;&#x2F;imgod.me&#x2F;" rel="noopener" target="_blank">imgod</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ekkoqaq.cc/posts/50684/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ekko">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shallow Dream">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="0x01 计算机系统概述 | Shallow Dream">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          0x01 计算机系统概述
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-12-30 21:27:58 / 修改时间：21:31:01" itemprop="dateCreated datePublished" datetime="2022-12-30T21:27:58+08:00">2022-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/50684/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/50684/" data-xid="/posts/50684/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span id="/posts/50684/" class="post-meta-item leancloud_visitors" data-flag-title="0x01 计算机系统概述" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>自学笔记</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="计算机的发展历程">计算机的发展历程</h2>
+<p>计算机系统构成</p>
+<ul>
+<li>用户</li>
+<li>应用程序</li>
+<li>操作系统OS</li>
+<li>硬件（裸机）</li>
+</ul>
+<p>系统软件安装在硬件上</p>
+<p>应用程序安装在系统上</p>
+<p>只有硬件的就是裸机</p>
+<p>应用程序和操作系统统称软件，</p>
+<p>系统软件：</p>
+<ul>
+<li>操作系统</li>
+<li>语言处理程序：C语言等之类代码的编译，高级语言转为低级语言</li>
+<li>数据库管理系统</li>
+<li>分布式软件系统：多设备使用，同时连接多个键盘进行控制</li>
+<li>网络软件系统</li>
+<li>各种服务软件：属于操作系统的一部分</li>
+</ul>
+<h3 id="硬件软件的发展">硬件软件的发展</h3>
+<p>硬件发展：</p>
+<p>电子管时代：1946-1959</p>
+<p>晶体管时代：1959-1964</p>
+<p>中小规模集成电路时代：1964-1975</p>
+<p>超大规模集成电路时代：1975-1990</p>
+<p>超级规模集成电路时代：1990-现在</p>
+<p><strong>随着半导体材料和工艺的发展不断发展</strong></p>
+<p>软件发展：</p>
+<p>汇编语言阶段：20世纪50年代</p>
+<p>汇编语言不是机器语言——二进制，计算机唯一能够识别的，人类不好分辨，对他进行封装，形成汇编语言</p>
+<p>程序批处理阶段：20世纪60年代</p>
+<p>操作系统的雏形</p>
+<p>分时多用户阶段：20世纪70年代</p>
+<p>给不同用户用一定时间</p>
+<p>分布式管理阶段：20世纪80年代</p>
+<p>软件重用阶段：20世纪90年代</p>
+<p>代码复用的思想，面向对象</p>
+<p>Web服务阶段：21世纪初至今</p>
+<p>之前将单台计算机视为服务器，在拆分后，多台计算机提供不同服务，合起来又是大型服务</p>
+<h3 id="电子计算机的分类">电子计算机的分类</h3>
+<p>处理信号不同</p>
+<ul>
+<li>模拟计算机：模拟信号，连续的，电磁波容易受到干扰</li>
+<li>数字计算机：数字信号，离散的</li>
+</ul>
+<p>用途不同：</p>
+<ul>
+<li><p>专用计算机：完成特定功能</p>
+<p>路由器、交换机</p></li>
+<li><p>通用计算机：能完成很多很多</p>
+<p>巨型机、大型机：科学计算</p>
+<p>中型机、小型机：服务器</p>
+<p>微机：个人使用，PC机</p>
+<p>单片机：工厂自动化流程控制</p></li>
+</ul>
+<h2 id="计算机系统的结构">计算机系统的结构</h2>
+<h3 id="计算机硬件的基本组成">计算机硬件的基本组成</h3>
+<ul>
+<li>输入设备</li>
+<li>输出设备</li>
+<li>存储器</li>
+<li>运算器</li>
+<li>控制器</li>
+</ul>
+<p>依靠总线相互连接</p>
+<figure>
+<img src="/posts/50684/image-20221230190327425.png" alt="image-20221230190327425">
+<figcaption aria-hidden="true">image-20221230190327425</figcaption>
+</figure>
+<p>输入输出设备称为IO设备：相对于CPU/主机，来看输入输出</p>
+<p>控制器和运算器合起来称为CPU</p>
+<h4 id="存储器">存储器</h4>
+<p>包含：</p>
+<p>主存：内存，内存条</p>
+<p>辅存：外存，硬盘，光盘，U盘等等</p>
+<p>以主存为例</p>
+<figure>
+<img src="/posts/50684/image-20221230193506178.png" alt="image-20221230193506178">
+<figcaption aria-hidden="true">image-20221230193506178</figcaption>
+</figure>
+<p>存储单元放置二进制位，是字节的倍数</p>
+<p>存储字的长度简称存储字长</p>
+<p>前方编号，当前存储单元的地址，有多少地址乘以字长，就有多少个比特位，除以8得到字节</p>
+<p>地址寄存器：MAR，存储地址</p>
+<p>数据寄存器：MDR，存储数据</p>
+<p>寄存器放置的数据很小，一般和CPU相当</p>
+<p>时序控制器：控制不同操作的先后顺序，发送相关指令，读或者写</p>
+<p>时序控制器，按照地址寻找，走地址总线，到存储体，存储体接收时序控制器的信号，读或写，放到数据寄存器。</p>
+<p>存储体容量=2^MAR位数*存储字长bit</p>
+<h4 id="运算器">运算器</h4>
+<figure>
+<img src="/posts/50684/image-20221230194633487.png" alt="image-20221230194633487">
+<figcaption aria-hidden="true">image-20221230194633487</figcaption>
+</figure>
+<p>ALU：进行核心运算</p>
+<p>GPRs通用寄存器组：临时存储</p>
+<h4 id="控制器">控制器</h4>
+<figure>
+<img src="/posts/50684/image-20221230195114462.png" alt="image-20221230195114462">
+<figcaption aria-hidden="true">image-20221230195114462</figcaption>
+</figure>
+<p>控制单元CU：分析指令，给出控制信号</p>
+<p>程序计数器PC：寄存器，存放下一条指令地址，+1</p>
+<p>指令寄存器IR：存放当前指令</p>
+<h3 id="冯诺依曼计算机结构">冯·诺依曼计算机结构</h3>
+<ul>
+<li><p>入/出/存/算/控</p></li>
+<li><p>采用<strong>二进制</strong>表示数据和指令</p>
+<p>以同等地位在存储器中，按<strong>地址</strong>寻访</p>
+<p>指令有<strong>操作码</strong>和<strong>地址码</strong>组成，构成一个二进制码</p>
+<p>指令按顺序存放和执行，也可改变指令顺序</p></li>
+<li><p>采用<strong>存储程序</strong>方式</p>
+<p>事先<strong>编制</strong>好程序，并与所需数据预先存入主存，控制器<strong>自动地、连续地</strong>从存储器取出指令并执行</p></li>
+</ul>
+<figure>
+<img src="/posts/50684/image-20221230200250717.png" alt="image-20221230200250717">
+<figcaption aria-hidden="true">image-20221230200250717</figcaption>
+</figure>
+<p>主要以运算器为核心</p>
+<figure>
+<img src="/posts/50684/image-20221230200925021.png" alt="image-20221230200925021">
+<figcaption aria-hidden="true">image-20221230200925021</figcaption>
+</figure>
+<p>控制器发起，控制器操作</p>
+<h3 id="现代计算机组织结构">现代计算机组织结构</h3>
+<ul>
+<li>入/出/存/算/控</li>
+<li>采用<strong>二进制</strong>表示数据和指令</li>
+<li>采用<strong>存储程序</strong>方式</li>
+<li><strong>CPU：运算器与控制器合并到微处理器</strong></li>
+<li>以<strong>存储器</strong>为核心，IO设备尽可能绕过CPU</li>
+</ul>
+<p>现代计算机运算器不再是性能瓶颈</p>
+<figure>
+<img src="/posts/50684/image-20221230201813812.png" alt="image-20221230201813812">
+<figcaption aria-hidden="true">image-20221230201813812</figcaption>
+</figure>
+<p>输入输出将信息存储到存储器，CPU直接从内存中读取，减少IO设备和CPU的交互</p>
+<figure>
+<img src="/posts/50684/image-20221230201937190.png" alt="image-20221230201937190">
+<figcaption aria-hidden="true">image-20221230201937190</figcaption>
+</figure>
+<figure>
+<img src="/posts/50684/image-20221230202300451.png" alt="image-20221230202300451">
+<figcaption aria-hidden="true">image-20221230202300451</figcaption>
+</figure>
+<h3 id="计算机的工作过程">计算机的工作过程</h3>
+<p>程序如何运行？</p>
+<figure>
+<img src="/posts/50684/image-20221230202947464.png" alt="image-20221230202947464">
+<figcaption aria-hidden="true">image-20221230202947464</figcaption>
+</figure>
+<ul>
+<li><p>从源文件到可执行文件</p>
+<ol type="1">
+<li><p>预处理阶段</p>
+<p>高级语言：C/C++、Java、GO</p>
+<p>删除注释；</p>
+<p>引入包含文件；</p></li>
+<li><p>编译阶段</p>
+<p>汇编语言：指令代码（计算机依旧不能识别</p></li>
+<li><p>汇编阶段</p>
+<p>机器语言：二进制编码（计算机唯一能够识别的语言</p></li>
+<li><p>链接阶段</p>
+<p>+库函数</p></li>
+</ol></li>
+</ul>
+<h2 id="计算机的性能指标">计算机的性能指标</h2>
+<h3 id="机器字长">机器字长</h3>
+<p>基本概念：也叫基本字长，参与运算的二进制数据的位数决定了寄存器、ALU、数据总线位数，代表了运算精度</p>
+<p>易混淆概念：</p>
+<p><strong>所有字长都必须是字节的整数倍</strong></p>
+<p>机器字长：一般等于内部寄存器的大小</p>
+<p>指令字长：一个指令包含的二进制码的位数</p>
+<p>存储字长：存储单元的二进制码的长度/位数</p>
+<figure>
+<img src="/posts/50684/image-20221230204110498.png" alt="image-20221230204110498">
+<figcaption aria-hidden="true">image-20221230204110498</figcaption>
+</figure>
+<p>指令字长和机器字长没有任何关系</p>
+<p>存储字长和他们也没有关系</p>
+<p>64位的机器，说明内部寄存器都是64位，一次ALU可计算64位</p>
+<p>Q:8位存储单元放不下16位指令单元怎么办？</p>
+<p>A:取两次，一次取两个存储单元</p>
+<h3 id="主存容量">主存容量</h3>
+<p>基本概念：一般指主存的最大容量，单位是字节Byte</p>
+<figure>
+<img src="/posts/50684/image-20221230204717402.png" alt="image-20221230204717402">
+<figcaption aria-hidden="true">image-20221230204717402</figcaption>
+</figure>
+<p>运行时程序和数据都在主存中，主存容量越大，可运行的程序就越多，<strong>MAR位数</strong>决定了可寻址范围的最大值（但不一定是当前机器安装内存的容量）</p>
+<h3 id="运算速度">运算速度</h3>
+<figure>
+<img src="/posts/50684/image-20221230211119602.png" alt="image-20221230211119602">
+<figcaption aria-hidden="true">image-20221230211119602</figcaption>
+</figure>
+<ul>
+<li><p>吞吐量和响应时间</p>
+<p><strong>吞吐量</strong>：单位时间内处理的请求数量</p>
+<p>信息输入内存的速度</p>
+<p>CPU取指令的速度</p>
+<p>数据取出/存入内存的速度</p>
+<p>从内存转出到外部设备的速度</p>
+<p><strong>响应时间</strong>：从用户发送请求到收到响应经过的时间</p>
+<p>CPU时间（运行程序花费的时间）</p>
+<p>等待时间（磁盘访问/主存访问/IO操作/OS开销/网络传输）</p></li>
+<li><p>CPU时钟周期和主频</p>
+<p><strong>CPU时钟周期</strong>：单个动作所花费的时间</p>
+<p>节拍脉冲或T周期，即主频的倒数</p>
+<p>CPU中最小的时间单位，每个动作至少一个时钟周期</p>
+<p>单位：秒</p>
+<p><strong>主频（CPU时钟频率）</strong>：单位时间完成基本动作的数量</p>
+<p>机器内部主时钟的频率</p>
+<p>主频越高花费时间越短，执行指令速度越快</p>
+<p>单位：Hz（赫兹），即次数/秒</p>
+<p>时钟周期=1/主频，互为倒数</p></li>
+<li><p>CPI（Clock cycle Per Instruction)</p>
+<p>执行一条指令所需的时钟周期数</p></li>
+<li><p>CPU执行时间</p>
+<p>即运行一个程序所花费的时间</p>
+<p>=CPU时钟周期数/主频=（指令条数*CPI）/主频</p>
+<p>三要素（相互制约）</p>
+<ul>
+<li>主频（时钟频率）</li>
+<li>每条指令所用的时钟周期数（CPI）</li>
+<li>指令条数</li>
+</ul></li>
+<li><p>其他（了解）</p>
+<p>MIPS：Million Instructions Per Second</p>
+<p>=指令条数/（执行时间*10^6）</p>
+<p>MFLOPS：Mega Floating-point Operations PS</p>
+<p>=浮点数操作次数/（执行时间*10^6）</p>
+<p>GFLOPS：Giga Floating-point Operation PS</p>
+<p>=浮点数操作次数/（执行时间*10^9）</p>
+<p>TFLOPS：Tera Floating-point Operations PS</p>
+<p>=浮点数操作次数/（执行时间*10^12）</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 计算机组成原理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/9386/" rel="prev" title="位图">
+                  <i class="fa fa-chevron-left"></i> 位图
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ekko</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">38k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">34 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><script color="119,119,119" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-ms/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"别乱说话！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/50684/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>
