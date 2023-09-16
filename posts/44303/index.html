@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 5.4.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-ms/font-awesome/5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-ms/animate.css/3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/pace-js@1.2.4/themes/black/pace-theme-loading-bar.css">
+  <script src="https://unpkg.com/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ekkoqaq.cc","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.10.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#FF0000","save":"manual"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Vim-golf 真上头...">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim">
+<meta property="og:url" content="https://ekkoqaq.cc/posts/44303/index.html">
+<meta property="og:site_name" content="Shallow Dream">
+<meta property="og:description" content="Vim-golf 真上头...">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616190836142.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616191308670.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616195748266.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616195520217.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616203644983.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616204428595.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/44303/image-20230616204544058.png">
+<meta property="article:published_time" content="2023-06-18T14:03:31.000Z">
+<meta property="article:modified_time" content="2023-09-16T05:24:34.745Z">
+<meta property="article:author" content="Ekko">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ekkoqaq.cc/posts/44303/image-20230616190836142.png">
+
+
+<link rel="canonical" href="https://ekkoqaq.cc/posts/44303/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ekkoqaq.cc/posts/44303/","path":"posts/44303/","title":"Vim"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Vim | Shallow Dream</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://comments.ekkoqaq.cc/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shallow Dream</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep It Simple and Stupid!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E8%AF%B4%E5%9C%A8%E5%89%8D%E9%9D%A2%E7%9A%84%E9%97%B2%E8%AF%9D"><span class="nav-number">1.</span> <span class="nav-text">一些说在前面的闲话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-vim"><span class="nav-number">2.</span> <span class="nav-text">安装 Vim</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows-10"><span class="nav-number">2.1.</span> <span class="nav-text">Windows 10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux"><span class="nav-number">2.2.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.</span> <span class="nav-text">Vim 基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-%E7%9A%84%E5%90%84%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">Vim 的各种模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-%E7%9A%84%E7%BC%93%E5%86%B2%E5%8C%BAbuffer%E7%AA%97%E5%8F%A3window%E6%A0%87%E7%AD%BE%E9%A1%B5tab"><span class="nav-number">3.2.</span> <span class="nav-text">Vim
+的缓冲区（buffer），窗口（window），标签页（tab）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">普通模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">移动命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">编辑命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-number">4.4.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">4.5.</span> <span class="nav-text">修饰符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">可视模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">命令行模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-vim-%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F"><span class="nav-number">7.</span> <span class="nav-text">练习 Vim 的小游戏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-%E7%9A%84%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE"><span class="nav-number">8.</span> <span class="nav-text">Vim 的简单配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ekko"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ekko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我来人间凑个数(这是个集合)
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://monster-siren.hypergryph.com/" title="https:&#x2F;&#x2F;monster-siren.hypergryph.com&#x2F;" rel="noopener" target="_blank">塞壬唱片</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imgod.me/" title="https:&#x2F;&#x2F;imgod.me&#x2F;" rel="noopener" target="_blank">imgod</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ekkoqaq.cc/posts/44303/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ekko">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shallow Dream">
+      <meta itemprop="description" content="">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Vim | Shallow Dream">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vim
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-06-18 22:03:31" itemprop="dateCreated datePublished" datetime="2023-06-18T22:03:31+08:00">2023-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-16 13:24:34" itemprop="dateModified" datetime="2023-09-16T13:24:34+08:00">2023-09-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/44303/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/44303/" data-xid="/posts/44303/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span id="/posts/44303/" class="post-meta-item leancloud_visitors" data-flag-title="Vim" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>Vim-golf 真上头...</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一些说在前面的闲话">一些说在前面的闲话</h2>
+<blockquote>
+<p>如何生成完全随机的字符串？ 找一个没有用过 Vim 的人，让他退出 Vim</p>
+</blockquote>
+<p>这个东西没用（如果你是这么认为的话），并且他确实有很多的替代品，图形化的
+VsCode 也是非常不错的，所以你现在就可以退出了。</p>
+<p>如果你没有选择退出</p>
+<p>学一个新工具就像小时候学习使用筷子一样，一开始你会发现，用筷子远远不如你使用汤勺吃放方便，但是当你熟练使用筷子后，你会发现，那是真的爽...</p>
+<h2 id="安装-vim">安装 Vim</h2>
+<h3 id="windows-10">Windows 10</h3>
+<ol type="1">
+<li>首先 powershell 中输入 <code>vim --version</code></li>
+</ol>
+<figure>
+<img src="/posts/44303/image-20230616190836142.png" alt="image-20230616190836142">
+<figcaption aria-hidden="true">image-20230616190836142</figcaption>
+</figure>
+<ol start="2" type="1">
+<li><p>找到 Vim 安装包</p>
+<p>官网下载：
+https://github.com/vim/vim-win32-installer/releases</p></li>
+<li><p>下载完成后解压到对应的文件夹</p></li>
+<li><p>此时 Vim.exe 就可以正常使用了</p></li>
+<li><p>为了方便使用我们需要添加环境变量</p>
+<p>下方 path 中，添加路径，路径为 Vim.exe 所在文件夹目录</p>
+<figure>
+<img src="/posts/44303/image-20230616191308670.png" alt="image-20230616191308670">
+<figcaption aria-hidden="true">image-20230616191308670</figcaption>
+</figure>
+<p>添加环境变量成功后，在 powershell 中再次输入
+<code>vim --version</code>，出现下图信息即添加成功</p>
+<figure>
+<img src="/posts/44303/image-20230616195748266.png" alt="image-20230616195748266">
+<figcaption aria-hidden="true">image-20230616195748266</figcaption>
+</figure></li>
+</ol>
+<h3 id="linux">Linux</h3>
+<p>我一定会写的...</p>
+<h2 id="vim-基本介绍">Vim 基本介绍</h2>
+<blockquote>
+<p>Vim 本身就是一种基于命令的编程语言</p>
+</blockquote>
+<p>所以，就像编程中，你学会不同的函数后，就可以把他们组合起来，来实现一些功能</p>
+<p>由于 Vim 有时使用组合按键，所以对后文的组合按键的表示，做一下说明</p>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>表示</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>i</td>
+<td>i</td>
+</tr>
+<tr class="even">
+<td>K</td>
+<td>K</td>
+</tr>
+<tr class="odd">
+<td>Ctrl-v</td>
+<td>^v，Ctrl-v，&lt;C,v&gt;</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="vim-的各种模式">Vim 的各种模式</h3>
+<p>Vim 是一个模式编辑器（modal editor）</p>
+<p>这意味着 Vim
+有多个操作模式，编程时会经常做不同类型的事，你可以根据要做的事情去选择不同的操作模式</p>
+<figure>
+<img src="/posts/44303/image-20230616195520217.png" alt="image-20230616195520217">
+<figcaption aria-hidden="true">image-20230616195520217</figcaption>
+</figure>
+<h3 id="vim-的缓冲区buffer窗口window标签页tab">Vim
+的缓冲区（buffer），窗口（window），标签页（tab）</h3>
+<p>像是很多编辑器一样，你会在编辑器中打开多个文件，并且会有多个标签页和多个窗口</p>
+<p>Vim 也有这些概念，但是 Vim 的模式与大多数其他的编辑器有些不同</p>
+<p>Vim
+维护了一组打开的缓冲区，这是他用于打开文件的术语，它有一组打开的文件。除此以外，你可以有多个标签页，标签页里也会有窗口</p>
+<p>但是和其他编辑器不同的是，Vim
+中<strong>缓冲区和窗口之间不一定是一对一的对应关系</strong>。</p>
+<h2 id="普通模式">普通模式</h2>
+<p>大部分情况下，你将在普通模式下，移动浏览文本</p>
+<h3 id="移动命令">移动命令</h3>
+<p>移动命令像是句子中的“名词”，直接就能产生对应效果</p>
+<p>可以帮助你快速的在文章中浏览</p>
+<ul>
+<li><p>基本的移动： <code>hjkl</code> （左，下，上，右）</p></li>
+<li><p>单词：</p>
+<ul>
+<li><code>w</code>（跳转到下一个单词的开头）</li>
+<li><code>b</code>（跳转到上一个单词的开头）</li>
+<li><code>e</code>（跳转到单词的末尾，向后跳）</li>
+</ul></li>
+<li><p>行：</p>
+<ul>
+<li><code>0</code>（行开头）</li>
+<li><code>^</code> (行第一个非空字符)</li>
+<li><code>$</code>（行末）</li>
+</ul></li>
+<li><p>屏幕：</p>
+<ul>
+<li><code>H</code>（当前屏幕第一行）</li>
+<li><code>M</code>（当前屏幕中间行）</li>
+<li><code>L</code>（当前屏幕最底行）</li>
+</ul></li>
+<li><p>浏览：</p>
+<ul>
+<li><code>Ctrl—u</code>（向上滚动）</li>
+<li><code>Ctrl—d</code>（向下滚动）</li>
+</ul></li>
+<li><p>文件：</p>
+<ul>
+<li><code>gg</code> （文件最开始）</li>
+<li><code>G</code> （文件最后）</li>
+</ul></li>
+<li><p>行号：</p>
+<ul>
+<li><code>:&#123;number&#125;&lt;CR&gt;</code> 或者 <code>&#123;number&#125;G</code>
+(绝对行号)</li>
+</ul></li>
+<li><p>查找：</p>
+<ul>
+<li><code>f&#123;字符&#125;</code> 当前行查找这个字符</li>
+<li><code>t&#123;字符&#125;</code>
+当前行查找这个字符，然后光标移动到他前一个字符</li>
+<li><code>F&#123;字符&#125;</code> ，<code>T&#123;字符&#125;</code>
+同样的道理，当前行向前寻找</li>
+<li><code>/&#123;字符&#125;</code> 全文查找这个字符</li>
+<li><code>?&#123;字符&#125;</code> 当前位置向前搜索</li>
+<li><code>n</code> 下一个 “next”</li>
+</ul></li>
+</ul>
+<h3 id="编辑命令">编辑命令</h3>
+<p>编辑命令像是动词，有时候需要和移动命令相结合，来实现功能（动词+名词）</p>
+<ul>
+<li><code>i</code> 进入插入模式</li>
+<li><code>o</code>/<code>O</code>
+在当前行下/上新建一行，并进入编辑模式</li>
+<li><code>d&#123;移动命令&#125;</code> 删除所选部分
+<ul>
+<li>例如：<code>dw</code> 删除一个单词，<code>d0</code>
+删除当前到行首部分</li>
+</ul></li>
+<li><code>c&#123;移动命令&#125;</code> 删除所选部分并进入插入模式，就是改变
+“change”
+<ul>
+<li>例如：<code>cw</code> 改变一个单词，相当于<code>dw</code>
+然后<code>i</code></li>
+</ul></li>
+<li>上述两个按键需要移动参数，当重复按的时候对当前行生效
+<ul>
+<li><code>dd</code> 删除当前行</li>
+<li><code>cc</code> 删除当前行，并进入插入模式（改变当前行）</li>
+</ul></li>
+<li><code>x</code> 删除当前光标处字符</li>
+<li><code>r&#123;字符&#125;</code> 用输入的字符，替换当前光标处字符</li>
+<li><code>u</code> 撤销 “undo”</li>
+<li><code>Ctrl-r</code> 重做 “redo”</li>
+<li><code>y&#123;移动命令&#125;</code> 复制 “yank”</li>
+<li><code>p&#123;移动命令&#125;</code> 粘贴 “paste”</li>
+<li><code>v</code> 进入普通可视模式</li>
+<li><code>~</code> 反转大小写</li>
+</ul>
+<h3 id="计数">计数</h3>
+<p>你可以给操作一个数字</p>
+<ul>
+<li><code>&#123;数字&#125;&#123;操作&#125;</code> 执行{数字}次{操作}
+<ul>
+<li>向下移动四行 <code>4j</code></li>
+<li>删除七个单词 <code>7dw</code></li>
+</ul></li>
+<li><code>Ctrl-a</code> 当前光标数字+1</li>
+<li><code>Ctrl-x</code> 当前光标数字-1</li>
+</ul>
+<h3 id="操作">操作</h3>
+<p>你同样可以对命令进行操作</p>
+<ul>
+<li><code>.</code> 重复上一个命令</li>
+</ul>
+<h3 id="修饰符">修饰符</h3>
+<p>用来与括号，引号一类的字符交互</p>
+<ul>
+<li><code>a</code> 周围或者包括 “around”</li>
+<li><code>i</code> 内部 “inside”
+<ul>
+<li><code>ci[</code> 改变 [ ] 内部 （change “ [ ] ” inside）</li>
+<li><code>ca&#123;</code> 改变 { } 周围 （change “ { } ” around）</li>
+<li><code>da'</code> 删除 ‘ ’ 周围 （delete “ ‘ ’ ” around）</li>
+</ul></li>
+</ul>
+<h2 id="可视模式">可视模式</h2>
+<p>用于选择</p>
+<ul>
+<li><code>v</code> 普通可视模式：选中两点之间的文本</li>
+<li><code>V</code> 可视行模式：移动中每次直接选中一行</li>
+<li><code>Ctrl-v</code> 可视块模式：选中矩形块</li>
+</ul>
+<h2 id="命令行模式">命令行模式</h2>
+<p>通过键入 <code>:</code>
+从普通模式进入命令行模式，此时光标将会跳转到屏幕底部</p>
+<p>该模式有很多的功能，包括<strong>打开文件，保存文件，关闭文件，退出
+Vim</strong></p>
+<ul>
+<li><code>:q</code> 退出 “quit”（关闭当前窗口）</li>
+<li><code>:w</code> 保存 “write”</li>
+<li><code>:wq</code> 保存并退出</li>
+<li><code>:e &#123;文件名字&#125;</code> 打开文件进行编辑</li>
+<li><code>:ls</code> 展示打开的缓存区</li>
+<li><code>:help &#123;某个操作&#125;</code> 给出这个操作的使用帮助
+<ul>
+<li><code>:help :w</code> 打开 <code>:w</code>
+这个写入操作的使用帮助</li>
+<li><code>:help w</code> 打开 <code>w</code> 这个移动操作的使用帮助</li>
+</ul></li>
+</ul>
+<h2 id="练习-vim-的小游戏">练习 Vim 的小游戏</h2>
+<blockquote>
+<p>拜托，上手一个东西最快的方式一定是像游戏一样，操作，死掉，重新来过</p>
+</blockquote>
+<ul>
+<li>冒险小游戏： https://vim-adventures.com/</li>
+<li>Vim-golf： http://www.vimgolf.com/</li>
+</ul>
+<h2 id="vim-的简单配置">Vim 的简单配置</h2>
+<p>由于个人习惯不同，Vim
+的操作键位不同，一些显示辅助功能也需要自己配置</p>
+<p>所以需要设置 <code>.vimrc</code></p>
+<ol type="1">
+<li><p>打开 powershell，输入 <code>vim --version</code>，可以看到，系统
+vimrc 文件，用户的 vimrc 文件的对应位置</p>
+<figure>
+<img src="/posts/44303/image-20230616203644983.png" alt="image-20230616203644983">
+<figcaption aria-hidden="true">image-20230616203644983</figcaption>
+</figure></li>
+<li><p>我们对用户的 vimrc 文件进行修改，在对应的目录输入
+<code>vim ~\.vimrc</code> ：创建 <code>.vimrc</code> 文件，并使用 Vim
+将其打开</p></li>
+<li><p>之后在打开的文件中输入对应的配置语句，Vim 中会出现对应的效果</p>
+<figure>
+<img src="/posts/44303/image-20230616204428595.png" alt="image-20230616204428595">
+<figcaption aria-hidden="true">image-20230616204428595</figcaption>
+</figure>
+<p>如图，这里添加了 <code>set nu</code>，显示行号，保存重新打开 Vim</p>
+<figure>
+<img src="/posts/44303/image-20230616204544058.png" alt="image-20230616204544058">
+<figcaption aria-hidden="true">image-20230616204544058</figcaption>
+</figure>
+<p>左侧显示行号</p></li>
+</ol>
+<p>这里给出 MIT 老师的提供的配置文件：
+https://github.com/missing-semester/missing-semester/blob/master/_2020/files/vimrc</p>
+<h2 id="参考">参考</h2>
+<ol type="1">
+<li>2020 MIT 公开课: The Missing Semester of Your CS
+Education(计算机教育中缺失的一课)</li>
+<li>一位不知名大佬的博客： https://www.mintimate.cn/2021/08/25/vim/</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vim/" rel="tag"><i class="fa fa-tag"></i> Vim</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/50684/" rel="prev" title="0x01 计算机系统概述">
+                  <i class="fa fa-chevron-left"></i> 0x01 计算机系统概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/20687/" rel="next" title="解决8080端口被占用的问题">
+                  解决8080端口被占用的问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ekko</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">66k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:01</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><script color="119,119,119" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-ms/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://unpkg.com/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://comments.ekkoqaq.cc/","placeholder":"别乱说话！","avatar":"robohash","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":["nick","mail"],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"auto","copyright":false,"el":"#waline-comments","path":"/posts/44303/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>
