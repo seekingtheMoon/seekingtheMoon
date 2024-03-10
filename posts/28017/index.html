@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ekkoqaq.cc","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#FF0000","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="也许是电脑最原始的交互方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is Shell?">
+<meta property="og:url" content="https://ekkoqaq.cc/posts/28017/index.html">
+<meta property="og:site_name" content="Shallow Dream">
+<meta property="og:description" content="也许是电脑最原始的交互方式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/28017/Library/World%2520Tree/Missing-semester-master/Shell/image-20230620204350428.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/28017/Library/World%2520Tree/Missing-semester-master/Shell/image-20230620204418479.png">
+<meta property="article:published_time" content="2023-11-25T09:35:33.000Z">
+<meta property="article:modified_time" content="2024-03-10T16:40:15.278Z">
+<meta property="article:author" content="Ekko">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ekkoqaq.cc/posts/28017/Library/World%2520Tree/Missing-semester-master/Shell/image-20230620204350428.png">
+
+<link rel="canonical" href="https://ekkoqaq.cc/posts/28017/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>What is Shell? | Shallow Dream</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shallow Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep It Simple and Stupid!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ekkoqaq.cc/posts/28017/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ekko">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shallow Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          What is Shell?
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-25 17:35:33" itemprop="dateCreated datePublished" datetime="2023-11-25T17:35:33+08:00">2023-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-11 00:40:15" itemprop="dateModified" datetime="2024-03-11T00:40:15+08:00">2024-03-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Skills/" itemprop="url" rel="index"><span itemprop="name">Skills</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Skills/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>21 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>也许是电脑最原始的交互方式</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="shell-介绍">Shell 介绍</h2>
+<p>现在的电脑有非常多的交互方式，图形，声音甚至是
+AR/VR。但是他们基本都限制了你能做什么，也就是你只能使用已有的功能，而不能去执行一些不存在的功能。</p>
+<p>为了更好的使用电脑，我们需要回到最原始的文本交互方式，也就是
+Shell</p>
+<p>Shell 也是一种编程语言，你可以在 Shell 中实现 while 循环，for
+循环，条件语句，甚至你可以编写函数等等</p>
+<p>Missing semester master 课程中老师使用的是 Bourne Again Shell</p>
+<h2 id="shell-的简单使用">Shell 的简单使用</h2>
+<p>当打开终端的的时候可以看到 Shell 的提示符</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>ekko@Ling</code> 用户名@机器名称</li>
+<li><code>~/桌面</code> 当前所在路径
+<ul>
+<li><code>~</code> home的简写</li>
+<li><code>$</code> 表示你不是根用户（tells you that you are not the root
+user）</li>
+</ul></li>
+</ul>
+<p>你可以在 <code>$</code> 后输入命令（你想要让 Shell 做的事情）</p>
+<p>命令通常是非常简单的东西，像是给定参数，然后执行程序</p>
+<p>参数就是在命令后面一空格分隔的东西</p>
+<ul>
+<li><p>执行 <code>date</code> 这个程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ date</span><br><span class="line">2023年 06月 20日 星期二 21:27:21 CST</span><br></pre></td></tr></table></figure></li>
+<li><p>你也可以带有参数的执行程序，这是修改程序行为的一种方式，比如使用
+<code>echo</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ echo Hello</span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
+<p><code>echo</code>
+会打印参数，当你的参数是带有空格的时候，可以用引号将参数括起来，也可以使用
+<code>\</code> 将空格转义</p></li>
+<li><p>当然如果你坚持不转义空格，或者使用引号将被空格分开的参数括起来，对于
+<code>echo</code> 命令来说也没有什么大不了，但是如果你想要创建一个名称为
+“my photos” 的文件夹时，就会出现问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ mkdir &quot;my photos&quot;</span><br><span class="line">ekko@Ling:~/桌面$ mkdir my photos</span><br></pre></td></tr></table></figure>
+<p>第一条命令，将会正确创建 “my photos” 的文件夹</p>
+<p>第二条命令，将会创建两个文件夹，“my” 和 “photos”</p></li>
+</ul>
+<p>一个自然的问题，Shell
+是如何知道怎样执行所输入的程序呢？（也就是他为什么接收到
+<code>echo</code> 就会打印他的参数呢？）</p>
+<p>原因是，有一些内置程序是计算机自带的，还会附带一些面向终端的应用程序，这些应用程序，存储在你的文件系统中，Shell
+有一种方法可以确定程序的位置，通过使用环境变量。</p>
+<h3 id="环境变量">环境变量</h3>
+<p>环境变量是在启动 Shell 时设置的东西，它们并不是你每次运行 Shell
+时都必须设置的东西。</p>
+<p>有一些已经被设置好的变量，像是你的主目录在哪里，你的用户名是什么...</p>
+<p>要查看搜索路径，有一个至关重要的变量，即路径变量</p>
+<ul>
+<li><p><code>$PATH</code> 路径变量</p>
+<p>同样我们可以使用 <code>echo</code> 将其打印</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ echo $PATH</span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
+<p>将会显示所有的路径列表，Shell 就是在这些路径里搜索程序的</p>
+<p>这是一个用 <code>:</code>
+分隔的列表，每次你键入命令，它都会在计算机上搜索这个路径列表，并在每个目录中查找，与你尝试运行的命令匹配的程序或文件的名称</p></li>
+<li><p>如果想要知道实际运行的是哪个程序，可以使用 <code>which</code>
+命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ which echo</span><br><span class="line">/usr/bin/echo</span><br></pre></td></tr></table></figure>
+<p>他告诉我，如果我想要运行 <code>echo</code>
+，将会运行这个路径下的程序</p></li>
+</ul>
+<h3 id="路径">路径</h3>
+<blockquote>
+<p>路径是一种描述计算机上文件位置的方式</p>
+</blockquote>
+<p>在 Linux 和 macOS 上，这些路径是由斜杠 <code>/</code> 分隔的</p>
+<p>在 Windows 上，这样的路径通常用反斜杠 <code>\</code> 分隔</p>
+<p>在 Linux 和
+macOS，所有内容都属于根命名空间，因此所有路径都以斜杠或绝对路径开头；在
+Windows 上，每个分区都有一个根目录，因此你可能看到 “C:\” 或 “D:\”
+的路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/echo</span><br></pre></td></tr></table></figure>
+<p>对于这样一个路径，从根目录出发，查看名为 “usr” 的目录，然后查看名为
+“bin” 的目录，然后查看名为 “echo” 的文件</p>
+<ul>
+<li>绝对路径：能够完全确定文件位置的路径</li>
+<li>相对路径：相对于你当前所在的位置的路径</li>
+</ul>
+<p>想要找出当前位置，可以使用 <code>pwd</code> 命令（print working
+directory）</p>
+<p>它将打印出我当前所在的路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ pwd</span><br><span class="line">/home/ekko/桌面</span><br></pre></td></tr></table></figure>
+<p>所有的相对路径都是相对于当前工作目录而言的，同样的，我也可以改变我的当前工作目录，通过使用
+<code>cd</code> 命令（change directory）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cd /home</span><br><span class="line">ekko@Ling:/home$ </span><br></pre></td></tr></table></figure>
+<p>同时也有几个特殊的目录存在</p>
+<ul>
+<li><p><code>.</code> 表示当前目录</p></li>
+<li><p><code>..</code> 表示父目录</p></li>
+<li><p>这也是一个快速切换工作目录的方式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cd ..</span><br><span class="line">ekko@Ling:~$</span><br></pre></td></tr></table></figure>
+<p>快速回到上一级目录</p></li>
+<li><p>也可以通过相对路径，切换工作目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ cd ./home</span><br><span class="line">ekko@Ling:/home$</span><br></pre></td></tr></table></figure>
+<p>切换到当前目录下的home目录</p></li>
+<li><p>当然如果切换到没有的目录，他也会给出没有的提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/home$ cd ./home</span><br><span class="line">bash: cd: ./home: No such file or directory</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>通过构建路径，来遍历文件系统的方法</p>
+<p>一般情况下，我们可以任意使用相对路径和绝对路径，使用两者中最简单的</p>
+<p>而如果你编写了一个程序，想要在任何情况下都能运行，那么应该给出绝对路径，因为如果给出相对路径，在工作目录切换时，会出现无法成功运行的现象</p>
+<p>通常当我们运行程序时，它默认会在当前工作目录下进行操作，除非给出参数，这非常方便，意味着我们通常不需要提供完整路径，我们只需要使用文件名和当前所在的目录。</p>
+<ul>
+<li><p>有些时候我们想要知道当前工作目录下有哪些文件，这时候就需要
+<code>ls</code> 命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ ls</span><br><span class="line">bin		dev		lib		libx32		mnt		root</span><br><span class="line">boot	etc		lib32	lost+found	opt		run</span><br><span class="line">cdrom	home	lib64	media		proc	sbin</span><br></pre></td></tr></table></figure>
+<p>快速浏览当前位置文件</p></li>
+<li><p>或者 <code>ls &#123;路径&#125;</code>
+将参数作为路径传入，可以得到对应路径下的所有文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ ls /home</span><br><span class="line">ekko</span><br></pre></td></tr></table></figure></li>
+<li><p><code>~</code> 总是拓展到主目录，所以可以使用 <code>~</code>
+来写相对路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ cd ~</span><br><span class="line">ekko@Ling:~$ pwd</span><br><span class="line">/home/ekko</span><br></pre></td></tr></table></figure></li>
+<li><p><code>-</code> 切换到之前所在的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~$ cd -</span><br><span class="line">/</span><br><span class="line">ekko@Ling:/$ cd -</span><br><span class="line">/home/ekko</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>对于程序的参数，大多数程序会采用所谓的参数，如标志和选项，这些标志和选项通常以
+<code>-</code> 开头</p>
+<ul>
+<li><p><code>--help</code> 大多数程序都实现了这个选项</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~$ ls --help</span><br><span class="line">打印出大量该命令的帮助信息</span><br></pre></td></tr></table></figure>
+<p>你将看到程序的功能描述，和各种可用的标志和选项的详细说明</p>
+<p>通常我们称 <code>-&#123;单个字母&#125;</code>
+（单个破折号和单个字母的组合）为标志（flag），不带任何值的内容也是标志，带有值的东西为选项（option）</p>
+<p>例如：<code>-a</code> 和 <code>--all</code> 都是标志，<code>-C</code>
+和 <code>--color</code> 是选项</p></li>
+<li><p><code>-l</code> <code>ls</code>
+命令加该参数，可以提供很多非常有用的额外信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ ls -l</span><br><span class="line">总用量 945500</span><br><span class="line">lrwxrwxrwx	1 root root			7 6月  19 09:10 bin -&gt; usr/bin</span><br><span class="line">drwxr-xr-x	4 root root		 4096 6月  19 09:15 boot</span><br><span class="line">drwxr-xr-x	2 root root		 4096 6月  19 09:11 cdrom</span><br></pre></td></tr></table></figure>
+<p>以上的额外信息</p>
+<ul>
+<li><p><code>d</code> 表示这些条目是一个目录</p></li>
+<li><p><code>rwxr-xr-x</code>之后的字母表示为该文件设置的权限阅读方法是</p>
+<p>每三个字符为一组，分别是 <code>r</code> 读取（read）， <code>w</code>
+写入（write）， <code>x</code> 执行（execute），<code>-</code>
+没有该项权限</p>
+<ul>
+<li><code>rwx</code> 前三个字符的第一组为文件的所有者设置的权限</li>
+<li><code>r-x</code>
+第二组三个字符是为拥有该文件的组设置的权限。在这种情况下，所有这些文件也都是由root组拥有的</li>
+<li><code>r-x</code>
+最后一组三个字符是其他人的权限列表，所以对于那些不是文件或目录所有者或组所有者的人来说</li>
+</ul>
+<p>对于文件来说：</p>
+<ul>
+<li><p>有读取权限，你就可以阅读文件</p></li>
+<li><p>有写入权限，你就可以保存文件，添加内容，或者替换它</p></li>
+<li><p>有执行权限，你就可以执行那个文件</p></li>
+</ul>
+<p>对于目录来说，这些权限的含义稍有变化：</p>
+<ul>
+<li>有读取权限，你被允许看到这个目录中的文件</li>
+<li>有写入权限，你被允许在该目录中重命名、创建或删除文件</li>
+<li>有执行权限，是所谓的搜索权限，你被允许进入该目录。也就是如果你想要操作目录中的文件或者使用
+<code>cd</code>
+命令进入某个目录，你必须拥有该目录及其所有父目录的执行权限</li>
+</ul>
+<p>假如，你对一个文件有写入权限，但是对文件所在目录没有写入权限，那么你可以清空这个文件，但是不能删除它，因为清空文件，相当于修改文件，与文件的写入权限有关；而删除文件，是与文件所在目录的写入权限有关</p></li>
+<li><p>还有 <code>s</code> ， <code>t</code> ， <code>l</code>
+（查资料）</p></li>
+</ul></li>
+<li><p><code>mv</code>
+将文件从旧路径移动到新路径，可以更改文件名但不改变目录，也可以将文件移动到完全不同的目录中</p>
+<p><code>mv &#123;旧路径&#125; &#123;新路径&#125;</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ mv 1 2</span><br></pre></td></tr></table></figure>
+<p>将文件名由 1 改成 2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ mv 1 ./my</span><br></pre></td></tr></table></figure>
+<p>将文件 1 移动到当前目录下的my目录中</p></li>
+<li><p><code>cp</code> 将第一个路径上的文件复制一份到第二个路径上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cp hello ./1</span><br></pre></td></tr></table></figure></li>
+<li><p><code>rm</code> 删除给定路径上的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ rm ./1</span><br></pre></td></tr></table></figure>
+<p>Linux 中删除操作不会递归进行，因此不能够通过 <code>rm</code>
+操作来删除一个目录</p></li>
+<li><p>可以通过添加 <code>-r</code>
+标志来递归删除指定目录下的所有文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ rm -r ./1</span><br></pre></td></tr></table></figure></li>
+<li><p>当然可以通过 <code>mkdir</code> 来创建一个目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ mkdir &quot;new photos&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>也可以通过 <code>rmdir</code> 来删除目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ rmdir newdir</span><br></pre></td></tr></table></figure>
+<p>但是该命令只能删除空目录，这是一种安全机制，防止你误删</p></li>
+</ul>
+<p>如果你想要更多关于命令在这些平台上如何工作的信息，有一个非常方便的命令</p>
+<ul>
+<li><p><code>man</code> 以另一个程序的名称作为参数，给出他的手册页</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ man ls</span><br><span class="line">给出ls的手册页</span><br></pre></td></tr></table></figure>
+<p>和 <code>ls --help</code> 类似，但是 <code>man ls</code>
+给出的界面信息会更加适合浏览和阅读，在底部还会给出示例，编写者信息，更多信息的位置等等</p>
+<p>退出：<code>h for help or q to quit</code></p></li>
+<li><p><code>cat</code> 打印文件内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cat hello.txt</span><br></pre></td></tr></table></figure></li>
+<li><p><code>Ctrl-l</code>
+便捷的键盘快捷方式，用以清除终端，并回到顶部</p></li>
+</ul>
+<p>以上，我们只讨论了单独运行程序的情况，但是当你组合各种不同的程序时，Shell
+的大部分强大功能就会真正体现出来，而不只是简单的 <code>cd</code> 和
+<code>ls</code>，你还可能希望与文件交互，并让文件在不同程序之间传输。这时，我们可以使用
+Shell 提供的<strong>流</strong>的概念来实现。</p>
+<h2 id="流-stream">流 stream</h2>
+<p>每个程序都有两个主要的流：</p>
+<ul>
+<li>输入流 input stream</li>
+<li>输出流 output stream</li>
+</ul>
+<p>默认情况下，输入流来自于键盘，基本上是你的终端，你在终端中输入的任何内容都会进入程序；输出流则是每当程序打印输出时，输出的内容就会传递到这个流中。默认情况下，输出流也是指向你的终端的。</p>
+<p>Shell 提供了一种重定向这些流的方法，以改变程序的输入/输出指向。</p>
+<ul>
+<li><p>最简单的方法是使用尖括号符号 <code>&lt;&gt;</code></p>
+<p><code>&lt;</code> 表示将这个程序的输入重定向为这个文件的内容</p>
+<p><code>&gt;</code> 表示将前面程序的输出重定向到这个文件中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ echo hello &gt; hello.txt</span><br></pre></td></tr></table></figure>
+<p>没有重定向前，将会在回车后命令下方打印“hello”，而重定向后“hello”被打印到
+hello.txt 文件中，可以通过 <code>cat</code> 命令验证</p>
+<p><code>cat</code> 命令还有一种功能，支持将输入与输出连在一起</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cat &lt; hello.txt</span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+<p>按下回车时，Shell 会打开 hello.txt 读取其中的内容传递给
+<code>cat</code> ，此时没有重定向输出，所以直接输出在终端上。</p>
+<p>利用这个性质，也可以同样实现复制文件的操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cat &lt; hello.txt &gt; hello2.txt</span><br></pre></td></tr></table></figure>
+<p>此时的 <code>cat</code>
+在默认情况下运行，它自己并不知道这个重定向操作，Shell 使用 hello.txt
+作为 <code>cat</code> 的命令的输入，并将 <code>cat</code>
+打印的任何内容写入 hello2.txt 中</p></li>
+<li><p><code>&gt;&gt;</code> 双向箭头表示追加而不是覆盖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ cat &lt; hello.txt &gt; hello2.txt</span><br><span class="line">ekko@Ling:~/桌面$ cat &lt; hello.txt &gt;&gt; hello2.txt</span><br></pre></td></tr></table></figure>
+<p>第一条语句不管执行几次，最后 hello2.txt 都和 hello.txt
+文件完全一样，因为使用的是 <code>&gt;</code>
+每次输出是覆盖之前的记录</p>
+<p>第二条语句每执行一次，都会在 Hello2.txt 文件中追加输出</p></li>
+</ul>
+<p>以上命令只是与文件交互的简单方法，但是涉及到 Shell
+提供的另一个运算符，即管道运算符时，它们就变得更加有趣了。</p>
+<h3 id="管道运算符">管道运算符 <code>|</code></h3>
+<p>管道运算符，就是一根竖杠 <code>|</code></p>
+<p>他的作用是将左边程序的输出，作为右边程序的输入</p>
+<ul>
+<li><p><code>tail</code> 打印输入的最后 n 行 例如打印最后一行，使用
+“-n1” 参数（或者 “--line = 1”）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ ls -l / | tail -n1</span><br><span class="line">drwxr-xr-x	14 root root		4096 2月  23  2022 var</span><br></pre></td></tr></table></figure>
+<p>注意，这里，<code>ls</code> 不知道 <code>tail</code>
+，<code>tail</code> 也不知道 <code>ls</code>
+，它们是不同的程序，从未被编程为彼此兼容，它们只知道，如何从输入读取并写入输出，然后管道运算符将他们连接在一起，在这种情况下，我希望
+<code>ls</code> 的输出成为 <code>ls</code> 的输入，然后想要
+<code>tail</code> 的输出仅流到我的终端，因为这里并没有重定向他</p></li>
+<li><p>同样的，我也可以将所需要的输出，定向到一个文件中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ ls -l / | tail -n1 &gt; log.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>管道不仅能处理文本，对于图像也能做到处理，甚至于视频，也可以用管道进行数据流的传输，比如，将视频文件通过管道输入到一个
+Chromecast 发送程序中，然后将这个程序设置为最后一个，它会以 HTTP
+流式传输视频文件到你的 Chromecast 上。</p>
+<h2 id="如何以更强大更有趣的方式使用终端">如何以更强大，更有趣的方式使用终端</h2>
+<p>首先我们要讨论，Linux 和 macOS 系统中的一个重要主题，即 root
+用户的概念，root 用户有点像 Windows 上的管理员用户，它的用户 ID 是
+0。</p>
+<p>root
+用户是特殊的，因为他可以在你的系统上随意的做任何事情，即使某个文件对任何人都不可读或不可写，root
+仍然可以访问该文件。但是大多数时间，你不会作为超级用户来操作。你会用一些其他名字成为一个用户，这将是你常规情况下使用的用户。因为如果你一直以
+root
+用户身份操作计算机，如果运行了错误的程序，它们可能会彻底的破坏你的计算机。但偶尔你需要做一些要
+root 权限才能做的事。通常情况下，你会使用一个叫做 “sudo” 的程序（或者
+“do as su” ），这里的 su
+指的是超级用户。这是以超级用户的身份执行操作的一种方式。</p>
+<p>通常，你需要在终端中输入 “sudo” 加命令的方式，它将以 root
+用户的身份运行该命令</p>
+<p>在哪些情况下可能需要使用这样的东西呢？</p>
+<p>在你的计算机上有很多特殊的文件，比如一个叫做 sysfs
+的文件系统。可以通过</p>
+<figure>
+<img src="/posts/28017/Library/World%2520Tree/Missing-semester-master/Shell/image-20230620204350428.png" alt="image-20230620204350428">
+<figcaption aria-hidden="true">image-20230620204350428</figcaption>
+</figure>
+<p>如果你 <code>cd</code>
+到这里，你会发现很多并不是你计算机上的文件，而是各种内核参数，内核就像是你的计算机的核心。你可以通过文件来访问各种内核参数。</p>
+<p>如果继续进入 “class”
+他有许多不同类型的设备可以与之交互，或者可以访问各种队列或各种内部奇怪的旋钮。</p>
+<figure>
+<img src="/posts/28017/Library/World%2520Tree/Missing-semester-master/Shell/image-20230620204418479.png" alt="image-20230620204418479">
+<figcaption aria-hidden="true">image-20230620204418479</figcaption>
+</figure>
+<p>由于他们暴露为文件，这意味着我们可以使用到目前为止学到的所有工具来操作他们。</p>
+<p>在操作过程中，如果直接利用重定向修改文件，操作会被拒绝</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/sys/class/backlight/intel_backlight$ echo 500 &gt; brightness</span><br><span class="line">bash: brightness: Permission denied</span><br></pre></td></tr></table></figure>
+<p>因为如果要修改内核，是需要根用户的权限的</p>
+<p>可以想到的一个解决办法是利用 “sudo”</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/sys/class/backlight/intel_backlight$ sudo echo 500 &gt; brightness</span><br><span class="line">bash: brightness: Permission denied</span><br></pre></td></tr></table></figure>
+<p>但是仍然会被拒绝，为什么呢？</p>
+<p>就是之前强调的，<strong>输入和输出的重定向不是程序所知道的</strong>，当我们将
+“ls” 传输到 “tail” 时，<strong>“tail” 并不知道 “ls” ，而 “ls” 也不知道
+“tail” 这个通道是由 Shell 设置的。</strong></p>
+<p>所以在这种情况下，我告诉我的 Shell 运行程序 “sudo” 并使用参数 “echo”
+和 “500” ，并将其输出发送到名为 “brightness” 的文件，但是是 Shell 而不是
+“sudo” 程序打开了 “brightness” 文件。因此，作为我运行的 Shell ，尝试打开
+brightness
+文件进行写入，但是不允许这样做。因此，会收到权限被拒绝的错误。</p>
+<p>从 Shell 的提示符也可以知道现在的权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/sys/class/backlight/intel_backlight$ # echo 1 &gt; /sys/net/ipv4_forward</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>#</code> 表示以 root 身份运行此命令</li>
+<li><code>$</code> 表示你不是以 root 身份运行</li>
+</ul>
+<p>为了以 root 身份运行终端，我们可以切换到 root 终端</p>
+<ul>
+<li><p><code>sudo su</code> 切换到 root 终端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ sudo su</span><br><span class="line">[sudo] ekko 的密码:</span><br><span class="line">root@Ling:/# </span><br></pre></td></tr></table></figure>
+<p>表示以root身份运行以下命令</p>
+<p><code>su</code> 是一个复杂的命令，可以让你以超级用户的身份获取一个
+Shell</p>
+<p>输入密码后 <code>enter</code></p>
+<p>可以发现用户名从 ekko 变成了 root，提示符从 $ 变为了 #</p>
+<p>如果现在执行 <code>echo 500 &gt; brightness</code></p>
+<p>就可以正常执行</p></li>
+</ul>
+<p>除了以 root 身份运行 Shell，还有一种方法，即</p>
+<ul>
+<li><p><code>echo 1060 | sudo tee brightness</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ echo 1060 | sudo tee brightness</span><br></pre></td></tr></table></figure>
+<p>要理解上面的语句，就要明白 <code>tee</code> 命令的作用</p>
+<p><code>tee</code>
+会将输入内容写入一个文件，同时也将它输出到标准输出。</p>
+<p>也就是 <code>echo 1060</code> 然后用管道符连接到 <code>sudo</code>
+运行的 <code>tee</code> 中</p></li>
+</ul>
+<p>现在你应该大致了解了如何在终端和 Shell
+中操作了，并足够了解这些基本任务的原理。</p>
+<p>现在，你不应该再需要使用鼠标点击来查找文件了。</p>
+<p>还有一个剩余技巧——打开文件</p>
+<ul>
+<li><p><code>xdg-open</code> 在适当的程序中打开文件（这可能只适用于
+Linux ，MacOS 上可能被称为 “open” ）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/$ xdg-open lectures.html</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<ul>
+<li><p>确保打开的是正确的 Shell</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:~/桌面$ echo $SHELL</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+<p>输入 <code>echo $SHELL</code> 得到 <code>/bin/bash</code> 或
+<code>/usr/bin/zsh</code> 的回复</p></li>
+<li><p><code>touch</code> 用于创建新文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/tmp/missing$ touch semester</span><br></pre></td></tr></table></figure></li>
+<li><p>Bash quoting</p>
+<p>单引号 <code>' '</code>：所有 meta 字符的功能均被关闭</p>
+<p>双引号 <code>" "</code>：大部分 meta 字符的功能被关闭，除了 $
+等少数字符</p>
+<p>反斜杠 <code>\</code>：仅跟着 <code>\</code> 后面的 meta
+字符被关闭</p></li>
+<li><p>直接运行 <code>./semester</code> 失败，通过
+<code>ls ./semester -l</code> 查看发现</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/tmp/missing$ ls ./semester -l</span><br><span class="line">-rw-rw-r-- 1 ekko ekko 61 6月	22 20:53 ./semester</span><br></pre></td></tr></table></figure>
+<p>文件拥有者只有读写权限，无执行权限</p></li>
+<li><p>使用 <code>sh semester</code> 运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/tmp$ sh semester</span><br><span class="line">semester: 2: curl: not found</span><br></pre></td></tr></table></figure>
+<p>出现该条信息说明没有安装 Curl，使用下面的命令安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/tmp$ sudo apt-get install curl</span><br></pre></td></tr></table></figure>
+<p>安装后再次运行文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/tmp$ sh semester</span><br><span class="line">HTTP/2 200 </span><br><span class="line">server: GitHub.com</span><br><span class="line">content-type: text/html; charset=utf-8</span><br><span class="line">last-modified: Sat, 10 Jun 2023 13:13:30 GMT</span><br><span class="line">access-control-allow-origin: *</span><br><span class="line">etag: &quot;648476fa-1f86&quot;</span><br><span class="line">expires: Thu, 22 Jun 2023 08:35:27 GMT</span><br><span class="line">cache-control: max-age=600</span><br><span class="line">x-proxy-cache: MISS</span><br><span class="line">x-github-request-id: FBF2:6524:169121:17C6C8:64940577</span><br><span class="line">accept-ranges: bytes</span><br><span class="line">date: Thu, 22 Jun 2023 18:20:46 GMT</span><br><span class="line">via: 1.1 varnish</span><br><span class="line">age: 0</span><br><span class="line">x-served-by: cache-tyo11967-TYO</span><br><span class="line">x-cache: HIT</span><br><span class="line">x-cache-hits: 1</span><br><span class="line">x-timer: S1687458046.864056,VS0,VE170</span><br><span class="line">vary: Accept-Encoding</span><br><span class="line">x-fastly-request-id: 3d8dc766de1480ea09cca7f852c151aa205803ce</span><br><span class="line">content-length: 8070</span><br></pre></td></tr></table></figure>
+<p>程序正常输出</p>
+<p><code>sh</code> 命令可以不必事先设定 Shell
+的执行权限，相当于将脚本作为参数传给 bash
+来执行，被调用执行而不是文件自己来执行，所以不需要执行权限。</p></li>
+<li><p><code>chmod</code> 修改文件，目录权限</p>
+<p>syntax ：<code>chmod [操作对象][操作符][赋予权限][文件名]</code></p>
+<p>操作对象：<code>u</code> for user 文件目录所有者，<code>g</code> for
+group 文件目录所属用户组，<code>o</code> for other
+其他用户，<code>a</code> for all 所有用户</p>
+<p>操作符：<code>+</code> 添加权限， <code>-</code>
+减少权限，<code>=</code> 给定权限</p>
+<p>权限：<code>r</code> 读，<code>w</code> 写，<code>x</code> 执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling:/tmp$ ll semester</span><br><span class="line">-rw-rw-r-- 1 ekko ekko 60 6月  23 02:20 semester</span><br><span class="line">ekko@Ling :/tmp$ chmod u+x semester</span><br><span class="line">ekko@Ling :/tmp$ ll semester</span><br><span class="line">-rwxrw-r-- 1 ekko ekko 60 6月  23 02:20 semester*</span><br></pre></td></tr></table></figure>
+<p>当然可以快速赋予权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling :/tmp$ chmod u=rwx semester</span><br></pre></td></tr></table></figure>
+<p>通过使用八进制来表示权限</p>
+<p>例子：<code>r-x</code>，r-4，w-2，x-1，所以这个权限就可以用 <span class="math inline">\(4+0+1 = 5\)</span> 来表示</p>
+<p>对于 <code>rwxr-xrw-</code> 即为 <span class="math inline">\(756\)</span></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling :/tmp$ chmod a=rwx semester</span><br><span class="line">ekko@Ling :/tmp$ chmod 777 semester</span><br></pre></td></tr></table></figure>
+<p>上述两条给予所有用户所有权限的语句效果是一样的</p>
+<p>但我们给予 semester 权限后，也能够直接执行了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling :/tmp$ chmod u+x semester</span><br><span class="line">ekko@Ling :/tmp$ ll semester</span><br><span class="line">-rwxrw-r-- 1 ekko ekko 60 6月  23 02:20 semester*</span><br><span class="line">ekko@Ling :/tmp$ semester</span><br><span class="line">HTTP/2 200 </span><br><span class="line">server: GitHub.com</span><br><span class="line">content-type: text/html; charset=utf-8</span><br><span class="line">last-modified: Sat, 10 Jun 2023 13:13:30 GMT</span><br><span class="line">access-control-allow-origin: *</span><br><span class="line">etag: &quot;648476fa-1f86&quot;</span><br><span class="line">expires: Thu, 22 Jun 2023 08:35:27 GMT</span><br><span class="line">cache-control: max-age=600</span><br><span class="line">x-proxy-cache: MISS</span><br><span class="line">x-github-request-id: FBF2:6524:169121:17C6C8:64940577</span><br><span class="line">accept-ranges: bytes</span><br><span class="line">date: Thu, 22 Jun 2023 18:20:46 GMT</span><br><span class="line">via: 1.1 varnish</span><br><span class="line">age: 0</span><br><span class="line">x-served-by: cache-tyo11967-TYO</span><br><span class="line">x-cache: HIT</span><br><span class="line">x-cache-hits: 1</span><br><span class="line">x-timer: S1687458046.864056,VS0,VE170</span><br><span class="line">vary: Accept-Encoding</span><br><span class="line">x-fastly-request-id: 3d8dc766de1480ea09cca7f852c151aa205803ce</span><br><span class="line">content-length: 8070</span><br></pre></td></tr></table></figure></li>
+<li><p>接下来题目要求我们将 “last-modified” 信息打印</p>
+<p>我想到的解决办法是，这行信息，是原文件的前 4 行，也是前 4
+行的最后一行</p>
+<p>所以相当于用 <code>head</code> <code>tail</code>
+相互传递一下，应该就能解决问题</p>
+<p>事实证明这样确实可行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ekko@Ling :/tmp$ ./semester | head -n 4 | tail -n 1</span><br><span class="line">last-modified: Sat, 10 Jun 2023 13:13:30 GMT</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Shell/" rel="tag"><i class="fa fa-tag"></i> Shell</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/20687/" rel="prev" title="解决8080端口被占用的问题">
+      <i class="fa fa-chevron-left"></i> 解决8080端口被占用的问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/50869/" rel="next" title="Shell Scripting">
+      Shell Scripting <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">Shell 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">Shell 的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-number">2.2.</span> <span class="nav-text">路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81-stream"><span class="nav-number">3.</span> <span class="nav-text">流 stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.1.</span> <span class="nav-text">管道运算符 |</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BB%A5%E6%9B%B4%E5%BC%BA%E5%A4%A7%E6%9B%B4%E6%9C%89%E8%B6%A3%E7%9A%84%E6%96%B9%E5%BC%8F%E4%BD%BF%E7%94%A8%E7%BB%88%E7%AB%AF"><span class="nav-number">4.</span> <span class="nav-text">如何以更强大，更有趣的方式使用终端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exercises"><span class="nav-number">5.</span> <span class="nav-text">Exercises</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ekko"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ekko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我来人间凑个数(这是个集合)
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://monster-siren.hypergryph.com/" title="https:&#x2F;&#x2F;monster-siren.hypergryph.com&#x2F;" rel="noopener" target="_blank">塞壬唱片</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imgod.me/" title="https:&#x2F;&#x2F;imgod.me&#x2F;" rel="noopener" target="_blank">imgod</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ekko</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">36k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:09</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><script color="119,119,119" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
