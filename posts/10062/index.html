@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ekkoqaq.cc","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#FF0000","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="此事已有定论！争论已经结束。GOTO是有害的。TDD确实可行！ —— 《代码整洁之道：程序员的职业素养》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何进行TDD">
+<meta property="og:url" content="https://ekkoqaq.cc/posts/10062/index.html">
+<meta property="og:site_name" content="Shallow Dream">
+<meta property="og:description" content="此事已有定论！争论已经结束。GOTO是有害的。TDD确实可行！ —— 《代码整洁之道：程序员的职业素养》">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/10062/tdd-1.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240409234046775.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240410003715672.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240410003813995.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240410010324785.png">
+<meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240410011359314.png">
+<meta property="article:published_time" content="2024-04-09T14:07:33.000Z">
+<meta property="article:modified_time" content="2024-04-09T17:16:30.339Z">
+<meta property="article:author" content="Ekko">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ekkoqaq.cc/posts/10062/tdd-1.png">
+
+<link rel="canonical" href="https://ekkoqaq.cc/posts/10062/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>如何进行TDD | Shallow Dream</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shallow Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep It Simple and Stupid!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ekkoqaq.cc/posts/10062/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ekko">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shallow Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何进行TDD
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-09 22:07:33" itemprop="dateCreated datePublished" datetime="2024-04-09T22:07:33+08:00">2024-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-10 01:16:30" itemprop="dateModified" datetime="2024-04-10T01:16:30+08:00">2024-04-10</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>此事已有定论！争论已经结束。GOTO是有害的。TDD确实可行！ ——
+《代码整洁之道：程序员的职业素养》</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="什么是-tdd">什么是 TDD ？</h2>
+<blockquote>
+<p><strong>TDD: Test Driven Development</strong></p>
+<p>测试驱动开发是敏捷开发中的一项核心实践和技术，也是一种<strong>设计方法论</strong>。TDD
+的原理是在开发功能代码之前，<strong>先编写单元测试用例代码</strong>，<strong>测试代码确定需要编写什么产品代码</strong>。</p>
+<p>TDD
+的基本思路就是<strong>通过测试来推动整个开发的进行</strong>，但测试驱动开发并不只是单纯的测试工作，而是<strong>把需求分析，设计，质量控制量化的过程</strong>。</p>
+<p>TDD
+首先考虑使用需求（对象、功能、过程、接口等），主要是编写测试用例框架对功能的过程和接口进行设计，而测试框架可以持续进行验证。</p>
+</blockquote>
+<p><strong>可以参考下面这个例子：</strong></p>
+<hr>
+<p>夏天到了</p>
+<p>T：“我需要一个冰箱，他能装一些东西。”</p>
+<p>D：一个盒子，能够装东西，满足这个要求</p>
+<p>T：“他有三层，上面一层保持在4到5度，中间零下4到5度，下面零下20度。”</p>
+<p>D：把盒子分三层，控制不同的温度，满足</p>
+<p>T：“我希望这个盒子的门一打开能有个灯亮，这样晚上就可以看得见东西了”</p>
+<p>D：加个能亮的灯</p>
+<p>T：“不只是这样，我希望是门开灯亮，门关灯灭”</p>
+<p>D：改灯的逻辑</p>
+<p>...</p>
+<hr>
+<p>通过对冰箱的不同测试，我们满足冰箱不同的功能和要求，不断重复这个过程</p>
+<p>这个周期也叫“红-绿-重构”</p>
+<figure>
+<img src="/posts/10062/tdd-1.png" alt="红-绿-重构">
+<figcaption aria-hidden="true">红-绿-重构</figcaption>
+</figure>
+<ol type="1">
+<li>写一个测试（红）</li>
+<li>让测试通过（绿）</li>
+<li>优化设计（重构）</li>
+</ol>
+<h2 id="实践案例">实践案例</h2>
+<blockquote>
+<p>通过一个实践案例来展示如果进行单元测试驱动开发</p>
+</blockquote>
+<p>需要实现一个简易计算器</p>
+<h3 id="准备工作">准备工作</h3>
+<p>使用 IDEA，Java 语言演示</p>
+<p>需要导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.9.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="编写一个测试用例">1. 编写一个测试用例</h3>
+<p>对于这个简易计算器，我们希望能够有一个 <code>add()</code>
+方法，读入两个 <code>int</code> 类型数，能返回对应的结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testAddInt</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> calculator.add(<span class="number">2</span>, <span class="number">3</span>);		<span class="comment">// 计算 2 + 3 = 5</span></span><br><span class="line">    <span class="keyword">assert</span> result == <span class="number">5</span> : result;			<span class="comment">// 断言 result = 5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你看下面这个图你就知道为啥这个步骤叫 <strong>红</strong></p>
+<figure>
+<img src="/posts/10062/image-20240409234046775.png" alt="image-20240409234046775">
+<figcaption aria-hidden="true">image-20240409234046775</figcaption>
+</figure>
+<p>此时我们并没有 <code>Calculator</code> 这个类，也没有对应的
+<code>add()</code> 方法，单元测试自然也是没有通过的</p>
+<h3 id="让测试通过">2. 让测试通过</h3>
+<p>看到刚刚那些<strong>红</strong>了嘛</p>
+<p>知道接下来要干什么嘛？</p>
+<p>唉，对了！</p>
+<p>变<strong>绿</strong></p>
+<p>鼠标悬浮，对应位置创建类</p>
+<figure>
+<img src="/posts/10062/image-20240410003715672.png" alt="image-20240410003715672">
+<figcaption aria-hidden="true">image-20240410003715672</figcaption>
+</figure>
+<p>选择正确的位置</p>
+<figure>
+<img src="/posts/10062/image-20240410003813995.png" alt="image-20240410003813995">
+<figcaption aria-hidden="true">image-20240410003813995</figcaption>
+</figure>
+<p>创建类后，编写方法</p>
+<p>你只需要<strong>让代码恰好能够让当前失败的单元测试成功通过就好，不要多写</strong></p>
+<p><strong>恰好 成功通过 不要多写</strong></p>
+<p>能明白我的意思嘛？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> v, <span class="type">int</span> v1)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> v + v1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是的你没看错，就是这样</p>
+<p>不需要边界判断，不需要异常处理</p>
+<p>你只需要让这个代码，恰好能够通过你刚刚那个单元测试就好</p>
+<p>结果是显然的</p>
+<figure>
+<img src="/posts/10062/image-20240410010324785.png" alt="image-20240410010324785">
+<figcaption aria-hidden="true">image-20240410010324785</figcaption>
+</figure>
+<h3 id="下一个测试用例">下一个测试用例</h3>
+<p>我们希望当 <code>add()</code>
+方法的两个数，相加溢出的时候能够抛出异常，而不是返回错误的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testAddOverflow</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    assertThrows(ArithmeticException.class, ()-&gt;&#123;</span><br><span class="line">       calculator.add(Integer.MAX_VALUE, <span class="number">1</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>新的测试用例</p>
+<p>那么就该重构我们的 <code>add()</code>
+方法，让他通过我们的新测试用例</p>
+<h3 id="重构">重构</h3>
+<p>重构方法，让他能恰好通过新的测试用例（当然之前也要通过）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> v, <span class="type">int</span> v1)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> v + v1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (((v ^ result) &amp; (v1 ^ result)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ArithmeticException</span>(<span class="string">&quot;integer overflow&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单元测试通过</p>
+<figure>
+<img src="/posts/10062/image-20240410011359314.png" alt="image-20240410011359314">
+<figcaption aria-hidden="true">image-20240410011359314</figcaption>
+</figure>
+<h3 id="循环">循环</h3>
+<p>接下来就是循环上面的步骤</p>
+<p>“我想要我的计算器有个新功能！”</p>
+<p>“写个单元测试，然后我会改代码，让这个单元测试也能通过”</p>
+<p>不断迭代，从而实现所有需求</p>
+<h2 id="tdd-优点和缺点">TDD 优点和缺点</h2>
+<p>waiting...</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/50869/" rel="prev" title="Shell Scripting">
+      <i class="fa fa-chevron-left"></i> Shell Scripting
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-tdd"><span class="nav-number">1.</span> <span class="nav-text">什么是 TDD ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">实践案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">1. 编写一个测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9%E6%B5%8B%E8%AF%95%E9%80%9A%E8%BF%87"><span class="nav-number">2.3.</span> <span class="nav-text">2. 让测试通过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">下一个测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-number">2.6.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tdd-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">TDD 优点和缺点</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ekko"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ekko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我来人间凑个数(这是个集合)
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://monster-siren.hypergryph.com/" title="https:&#x2F;&#x2F;monster-siren.hypergryph.com&#x2F;" rel="noopener" target="_blank">塞壬唱片</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imgod.me/" title="https:&#x2F;&#x2F;imgod.me&#x2F;" rel="noopener" target="_blank">imgod</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ekko</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">37k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:14</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><script color="119,119,119" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
