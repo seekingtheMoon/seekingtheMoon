@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"ekkoqaq.cc","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#FF0000","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="此事已有定论！争论已经结束。GOTO是有害的。TDD确实可行！ —— 《代码整洁之道：程序员的职业素养》">
+  <meta name="description" content="此事已有定论！争论已经结束。 GOTO是有害的。TDD确实可行！ ​ —— 《代码整洁之道：程序员的职业素养》">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何进行TDD">
 <meta property="og:url" content="https://ekkoqaq.cc/posts/10062/index.html">
 <meta property="og:site_name" content="Shallow Dream">
-<meta property="og:description" content="此事已有定论！争论已经结束。GOTO是有害的。TDD确实可行！ —— 《代码整洁之道：程序员的职业素养》">
+<meta property="og:description" content="此事已有定论！争论已经结束。 GOTO是有害的。TDD确实可行！ ​ —— 《代码整洁之道：程序员的职业素养》">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/10062/tdd-1.png">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240409234046775.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240410010324785.png">
 <meta property="og:image" content="https://ekkoqaq.cc/posts/10062/image-20240410011359314.png">
 <meta property="article:published_time" content="2024-04-09T14:07:33.000Z">
-<meta property="article:modified_time" content="2024-04-09T17:16:30.339Z">
+<meta property="article:modified_time" content="2024-04-10T14:23:42.849Z">
 <meta property="article:author" content="Ekko">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ekkoqaq.cc/posts/10062/tdd-1.png">
@@ -207,7 +207,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-10 01:16:30" itemprop="dateModified" datetime="2024-04-10T01:16:30+08:00">2024-04-10</time>
+                <time title="修改时间：2024-04-10 22:23:42" itemprop="dateModified" datetime="2024-04-10T22:23:42+08:00">2024-04-10</time>
               </span>
 
           <br>
@@ -216,14 +216,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -236,10 +236,12 @@
 
       
         <blockquote>
-<p>此事已有定论！争论已经结束。GOTO是有害的。TDD确实可行！ ——
-《代码整洁之道：程序员的职业素养》</p>
+<p>此事已有定论！争论已经结束。</p>
+<p>GOTO是有害的。TDD确实可行！</p>
+<p>​ —— 《代码整洁之道：程序员的职业素养》</p>
 </blockquote>
 <span id="more"></span>
+<hr>
 <h2 id="什么是-tdd">什么是 TDD ？</h2>
 <blockquote>
 <p><strong>TDD: Test Driven Development</strong></p>
@@ -265,17 +267,17 @@
 <hr>
 <p>通过对冰箱的不同测试，我们满足冰箱不同的功能和要求，不断重复这个过程</p>
 <p>这个周期也叫“红-绿-重构”</p>
-<figure>
-<img src="/posts/10062/tdd-1.png" alt="红-绿-重构">
-<figcaption aria-hidden="true">红-绿-重构</figcaption>
-</figure>
+<p><img src="/posts/10062/tdd-1.png"></p>
 <ol type="1">
 <li>写一个测试（红）</li>
 <li>让测试通过（绿）</li>
 <li>优化设计（重构）</li>
 </ol>
+<hr>
 <h2 id="实践案例">实践案例</h2>
 <blockquote>
+<p>先介绍实践案例是来帮助你更快上手 TDD，如果你想知道怎么进行 TDD
+只看这一部分即可</p>
 <p>通过一个实践案例来展示如果进行单元测试驱动开发</p>
 </blockquote>
 <p>需要实现一个简易计算器</p>
@@ -288,10 +290,7 @@
 方法，读入两个 <code>int</code> 类型数，能返回对应的结果</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">testAddInt</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> calculator.add(<span class="number">2</span>, <span class="number">3</span>);		<span class="comment">// 计算 2 + 3 = 5</span></span><br><span class="line">    <span class="keyword">assert</span> result == <span class="number">5</span> : result;			<span class="comment">// 断言 result = 5</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>你看下面这个图你就知道为啥这个步骤叫 <strong>红</strong></p>
-<figure>
-<img src="/posts/10062/image-20240409234046775.png" alt="image-20240409234046775">
-<figcaption aria-hidden="true">image-20240409234046775</figcaption>
-</figure>
+<p><img src="/posts/10062/image-20240409234046775.png"></p>
 <p>此时我们并没有 <code>Calculator</code> 这个类，也没有对应的
 <code>add()</code> 方法，单元测试自然也是没有通过的</p>
 <h3 id="让测试通过">2. 让测试通过</h3>
@@ -300,15 +299,9 @@
 <p>唉，对了！</p>
 <p>变<strong>绿</strong></p>
 <p>鼠标悬浮，对应位置创建类</p>
-<figure>
-<img src="/posts/10062/image-20240410003715672.png" alt="image-20240410003715672">
-<figcaption aria-hidden="true">image-20240410003715672</figcaption>
-</figure>
+<p><img src="/posts/10062/image-20240410003715672.png"></p>
 <p>选择正确的位置</p>
-<figure>
-<img src="/posts/10062/image-20240410003813995.png" alt="image-20240410003813995">
-<figcaption aria-hidden="true">image-20240410003813995</figcaption>
-</figure>
+<p><img src="/posts/10062/image-20240410003813995.png"></p>
 <p>创建类后，编写方法</p>
 <p>你只需要<strong>让代码恰好能够让当前失败的单元测试成功通过就好，不要多写</strong></p>
 <p><strong>恰好 成功通过 不要多写</strong></p>
@@ -318,10 +311,7 @@
 <p>不需要边界判断，不需要异常处理</p>
 <p>你只需要让这个代码，恰好能够通过你刚刚那个单元测试就好</p>
 <p>结果是显然的</p>
-<figure>
-<img src="/posts/10062/image-20240410010324785.png" alt="image-20240410010324785">
-<figcaption aria-hidden="true">image-20240410010324785</figcaption>
-</figure>
+<p><img src="/posts/10062/image-20240410010324785.png"></p>
 <h3 id="下一个测试用例">下一个测试用例</h3>
 <p>我们希望当 <code>add()</code>
 方法的两个数，相加溢出的时候能够抛出异常，而不是返回错误的值</p>
@@ -333,17 +323,86 @@
 <p>重构方法，让他能恰好通过新的测试用例（当然之前也要通过）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> v, <span class="type">int</span> v1)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> v + v1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (((v ^ result) &amp; (v1 ^ result)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ArithmeticException</span>(<span class="string">&quot;integer overflow&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>单元测试通过</p>
-<figure>
-<img src="/posts/10062/image-20240410011359314.png" alt="image-20240410011359314">
-<figcaption aria-hidden="true">image-20240410011359314</figcaption>
-</figure>
+<p><img src="/posts/10062/image-20240410011359314.png"></p>
 <h3 id="循环">循环</h3>
 <p>接下来就是循环上面的步骤</p>
 <p>“我想要我的计算器有个新功能！”</p>
 <p>“写个单元测试，然后我会改代码，让这个单元测试也能通过”</p>
 <p>不断迭代，从而实现所有需求</p>
-<h2 id="tdd-优点和缺点">TDD 优点和缺点</h2>
-<p>waiting...</p>
+<hr>
+<h2 id="tdd-的三项法则">TDD 的三项法则</h2>
+<ol type="1">
+<li><strong>在编好失败单元测试之前，不要编写任何产品代码</strong></li>
+<li><strong>只要有一个单元测试失败了，就不要再写测试代码；无法通过编译也是一种失败情况</strong></li>
+<li><strong>产品代码恰好能够让当前失败的单元测试成功通过即可，不要多写</strong></li>
+</ol>
+<hr>
+<h2 id="tdd-的优势">TDD 的优势</h2>
+<h3 id="确定性">确定性</h3>
+<p>在修改代码后，运行手头有的全部测试，如果单元测试全部通过，那么差不多可以确信修改没有破坏任何东西</p>
+<h3 id="缺陷注入率">缺陷注入率</h3>
+<p>TDD 能够显著降低缺陷</p>
+<h3 id="勇气">勇气</h3>
+<blockquote>
+<p>你为什么不敢去重构一些看起来不合理的代码？因为你不知道改完，程序还能不能正常运行。为什么不知道？因为没有编写单元测试覆盖整个代码</p>
+</blockquote>
+<p>如果你能确定自己的整理工作没有破坏东西，你会不会敢于去整理代码呢？</p>
+<p>TDD
+能够让你拥有一套值得信赖的测试，打消你对于修改代码的恐惧。当你不害怕去整理代码的时候，你就会去整理不合理的逻辑，设计，这样代码就会整洁，易于理解，易于修改，缺陷也就少了</p>
+<h3 id="文档">文档</h3>
+<blockquote>
+<p>代码不会撒谎</p>
+</blockquote>
+<p>每一个单元测试都是一个示例，描述系统的使用方法</p>
+<p>回想开篇的例子，你只需要看看 T
+的想法，你就知道这个冰箱都有什么功能</p>
+<p>单元测试就是文档，描述了系统设计的最底层设计细节</p>
+<h3 id="设计">设计</h3>
+<p>测试代码的一个问题就是必须隔离出要测试的代码。</p>
+<p>所以为了编写测试，你必找出将这个待测函数和其他函数解耦的办法。为了编写测试，会倒逼你去考虑什么是好的设计</p>
+<p>测试先行，促使你做出松耦合的设计</p>
+<p>事后当然也可以测试，但这本质上是不同的，先写的测试是进攻，后写的测试是防守。后写的测试受制于已有代码，因为你已经知道问题如何解决</p>
+<p>与采用测试先行的方式编写的测试代码比起来，后写的测试在深度和捕获错误的灵敏度方面都要逊色很多</p>
+<hr>
+<h2 id="tdd-的局限">TDD 的局限</h2>
+<h3 id="不适合-tdd-方式的场景">不适合 TDD 方式的场景</h3>
+<ol type="1">
+<li><p>无法迭代开发的</p>
+<p><del>都 2024 年了，无法迭代的开发，好好好</del></p></li>
+<li><p>无法快速测试的</p>
+<p>如果测试一次就要等半天，那还是老老实实的先开发后测试吧</p></li>
+<li><p>存在交互边界的</p>
+<p>硬件的开发，存在物理的边界</p></li>
+</ol>
+<h3 id="tdd-对团队本身有一定要求">TDD 对团队本身有一定要求</h3>
+<blockquote>
+<p>我都吃泡面了，我还在乎健康？</p>
+</blockquote>
+<p>人家都不在乎代码质量，只需要能跑</p>
+<p>你说你非要强行 TDD 多少有点自大</p>
+<p>同时 TDD
+需要有相对可迭代的拆分需求，拆分任务时需要对任务的粒度和可持续性有较高的要求</p>
+<p>对重构要有理解，对协作也要有理解</p>
+<hr>
+<h2 id="更多的测试代码并不是-tdd-的缺点">更多的测试代码并不是 TDD
+的缺点</h2>
+<blockquote>
+<p>你知道嘛</p>
+<p>如果说为了完成一个简单的加法器</p>
+<p>我本来只需要直接做到边界测试，溢出异常抛出，功能实现</p>
+<p>现在我 TDD 需要额外的去多写很多测试代码？</p>
+</blockquote>
+<p>记住代码多不是 TDD 的缺点，那是你的缺点</p>
+<p>TDD 编写测试单元的时间，是在用你直接开发，报错，调试，测试的时间</p>
+<p>你只是先写了测试，然后去开发</p>
+<p>只是调了顺序，不是让你额外的去编写了什么东西</p>
+<p>所以不要觉得 TDD 让你写了额外的代码，这些都是必须的</p>
+<p><strong>当然，这样也能给出一个比较合理的解决方案</strong></p>
+<p>单元测试代码在 2024
+年可以用大模型生成，你可以训练一个大模型，让他能够根据你要求的描述，给出单元测试代码</p>
+<p>（单元测试代码不会特别长，单元测试的函数一般都需要解耦，所以大模型生成的代码可执行率是很高的）</p>
+<p>所以比较方便，可以让你将测试阶段的重心更加注重设计测试，而不是编写测试代码</p>
+<p>在你时间不够的时候，仍然能够很好的进行 TDD</p>
 
     </div>
 
@@ -421,7 +480,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-tdd"><span class="nav-number">1.</span> <span class="nav-text">什么是 TDD ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">实践案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">1. 编写一个测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9%E6%B5%8B%E8%AF%95%E9%80%9A%E8%BF%87"><span class="nav-number">2.3.</span> <span class="nav-text">2. 让测试通过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">下一个测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-number">2.6.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tdd-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">TDD 优点和缺点</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-tdd"><span class="nav-number">1.</span> <span class="nav-text">什么是 TDD ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">实践案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">2.2.</span> <span class="nav-text">1. 编写一个测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9%E6%B5%8B%E8%AF%95%E9%80%9A%E8%BF%87"><span class="nav-number">2.3.</span> <span class="nav-text">2. 让测试通过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">2.4.</span> <span class="nav-text">下一个测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">重构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-number">2.6.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tdd-%E7%9A%84%E4%B8%89%E9%A1%B9%E6%B3%95%E5%88%99"><span class="nav-number">3.</span> <span class="nav-text">TDD 的三项法则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tdd-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">4.</span> <span class="nav-text">TDD 的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="nav-number">4.1.</span> <span class="nav-text">确定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E9%99%B7%E6%B3%A8%E5%85%A5%E7%8E%87"><span class="nav-number">4.2.</span> <span class="nav-text">缺陷注入率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%87%E6%B0%94"><span class="nav-number">4.3.</span> <span class="nav-text">勇气</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">4.4.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.5.</span> <span class="nav-text">设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tdd-%E7%9A%84%E5%B1%80%E9%99%90"><span class="nav-number">5.</span> <span class="nav-text">TDD 的局限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E9%80%82%E5%90%88-tdd-%E6%96%B9%E5%BC%8F%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="nav-number">5.1.</span> <span class="nav-text">不适合 TDD 方式的场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tdd-%E5%AF%B9%E5%9B%A2%E9%98%9F%E6%9C%AC%E8%BA%AB%E6%9C%89%E4%B8%80%E5%AE%9A%E8%A6%81%E6%B1%82"><span class="nav-number">5.2.</span> <span class="nav-text">TDD 对团队本身有一定要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81%E5%B9%B6%E4%B8%8D%E6%98%AF-tdd-%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">更多的测试代码并不是 TDD
+的缺点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -499,12 +559,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">37k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:14</span>
+    <span title="站点阅读时长">2:18</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div><script color="119,119,119" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
