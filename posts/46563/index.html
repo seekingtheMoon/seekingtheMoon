@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-loading-bar.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ekkoqaq.cc","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#FF0000","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="拜托，简短的一行，就能在大部分软件里快速实现匹配和替换目标词，这谁不心动啊！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="https://ekkoqaq.cc/posts/46563/index.html">
+<meta property="og:site_name" content="Shallow Dream">
+<meta property="og:description" content="拜托，简短的一行，就能在大部分软件里快速实现匹配和替换目标词，这谁不心动啊！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-15T09:39:35.000Z">
+<meta property="article:modified_time" content="2024-04-15T09:43:01.038Z">
+<meta property="article:author" content="Ekko">
+<meta property="article:tag" content="正则表达式">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ekkoqaq.cc/posts/46563/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>正则表达式 | Shallow Dream</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shallow Dream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep It Simple and Stupid!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ekkoqaq.cc/posts/46563/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ekko">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shallow Dream">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正则表达式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-15 17:39:35 / 修改时间：17:43:01" itemprop="dateCreated datePublished" datetime="2024-04-15T17:39:35+08:00">2024-04-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/skills/" itemprop="url" rel="index"><span itemprop="name">skills</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/skills/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">正则表达式</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>拜托，简短的一行，就能在大部分软件里快速实现匹配和替换目标词，这谁不心动啊！</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="几个-tips">几个 tips</h2>
+<h3 id="模式-pattern">模式 pattern</h3>
+<p>一般把一个正则表达式叫做<strong>模式</strong></p>
+<p>模式定义了一种模板</p>
+<p>会在文本中匹配符合模式的字符串</p>
+<h3 id="多个匹配结果">多个匹配结果</h3>
+<p>绝大多数正则表达式默认返回第 1
+个匹配结果，如果需要在全部文本中查找，需要查阅对应工具对正则表达式如何进行全局匹配</p>
+<h3 id="大小写敏感">大小写敏感</h3>
+<p>单词 <code>ekko</code> 并不会对模式 <code>Ekko</code> 有什么反应</p>
+<h3 id="痛点">痛点</h3>
+<p>把必须匹配的情况考虑周全并写出一个匹配结果符合预期的正则表达式很容易</p>
+<p>但把不需要匹配的情况也考虑周全，并确保它们都将被排除在匹配结果以外，往往要困难得多</p>
+<p>换言之</p>
+<p><strong>用正则表达式匹配出来目标的字符串很容易，但是正则表达式会不会匹配出来其他意想不到的字符串，就不好判断了</strong></p>
+<h3 id="良好的编码习惯">良好的编码习惯</h3>
+<p><code>[\r]?</code> ：匹配零个或一个回车符，功能等价于
+<code>\r？</code></p>
+<blockquote>
+<p>创建一个字符集合，仅包含 <code>\r</code> 字符</p>
+<p>这样做的目的是为了增加可读性，一眼就能看出哪个字符和哪个相关联</p>
+</blockquote>
+<h2 id="匹配">匹配</h2>
+<h3 id="匹配纯文本">匹配纯文本</h3>
+<ul>
+<li><code>Ekko</code> ：匹配 <code>Ekko</code></li>
+</ul>
+<p>在整个文本这个长字符串中，查找匹配 <code>Ekko</code> 这个字符串</p>
+<blockquote>
+<p>注意：</p>
+<p>匹配的并不总是整个字符串，而是与某个模式相匹配的字符，即使它们只是整个字符串的一部分</p>
+<p>对于上面这个模式</p>
+<p><code>aEkko</code></p>
+<p><code>Ekkooooohohohoh</code></p>
+<p><code>165asdweEkkoa9df51wq9</code></p>
+<p>这些词都会被匹配</p>
+</blockquote>
+<h3 id="匹配任意字符">匹配任意字符</h3>
+<ul>
+<li><code>.</code> ：（英文句号）匹配任意一个单个字符</li>
+</ul>
+<p><code>.</code> 可以匹配任何单个字符，字母，数字甚至是自己
+<code>.</code></p>
+<h3 id="匹配特殊字符">匹配特殊字符</h3>
+<p>一些字符在正则表达式中有着特殊的含义</p>
+<p>如果我们需要使用这些字符本来的意思，那么就需要对这些特殊字符进行<strong>转义</strong></p>
+<p><strong>转义：</strong> 使用 <code>\</code> 对特殊字符进行转义</p>
+<ul>
+<li><code>Ekko\.</code> ：匹配 <code>Ekko.</code> 这个字符串</li>
+</ul>
+<h3 id="匹配多个字符中的某一个">匹配多个字符中的某一个</h3>
+<p>有时候我们只需要匹配 <code>na</code> <code>sa</code> 这样的而不需要
+<code>ca</code></p>
+<p>此时只使用 <code>.</code> 也会将 <code>ca</code> 匹配出来</p>
+<p>使用 <code>[</code> 和 <code>]</code>
+两个元字符来定义一个字符集合，字符集合的匹配结果是能够与该集合里的任意一个成员相匹配的文本</p>
+<ul>
+<li><code>[ns]a</code> ：匹配第一个字母是 <code>n</code> 或
+<code>s</code> ，第二个字母是 <code>a</code> 的所有字符串</li>
+<li><code>[Cc]ar</code> ：不区分大小写的匹配 <code>car</code></li>
+</ul>
+<h3 id="匹配数字和字母">匹配数字和字母</h3>
+<p>同样的逻辑，创建一个集合 <code>[0123456789]</code></p>
+<ul>
+<li><code>arr[0123456789]</code>：匹配 <code>arr[0]</code> 或
+<code>arr[1]</code> 或 ... 或 <code>arr[9]</code></li>
+</ul>
+<p>那么匹配小写字母就只需要敲出</p>
+<p><code>[abcdefghijkl...</code></p>
+<p>等等，你认真的嘛？</p>
+<p>当然不是，对于这种字符区间，为了简化，正则表达式提供了一个特殊的元字符
+<code>-</code></p>
+<ul>
+<li><code>a-z</code> ：匹配一个字符，是小写字母</li>
+<li><code>A-Z</code> ：匹配一个字符，是大写字母</li>
+<li><code>0-9</code> ：匹配一个字符，是数字</li>
+<li><code>a-f</code> ：匹配一个字符，是 <code>a</code> 到 <code>f</code>
+这些字符中的字符</li>
+<li><code>a-zA-Z0-9</code> ：匹配一个字符，是大小写字母或者数字</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p>这种字符区间，首字符 &gt; 尾字符可能会匹配失败</p>
+</blockquote>
+<h3 id="取反匹配">取反匹配</h3>
+<p>达成匹配一个字符这件事有两种办法，一种是匹配合法字符，一种是排除所有不合法字符</p>
+<ul>
+<li><code>[^0-9]</code>：匹配一个字符，不能是数字</li>
+</ul>
+<p><code>^</code> 效果作用于字符集合，表示取反的意思</p>
+<h3 id="元字符-metacharacter">元字符 metacharacter</h3>
+<h4 id="转义">转义</h4>
+<p>元字符表示<strong>这个字符有特殊含义，而不是字符本身含义</strong></p>
+<p>元字符如果需要表示本身含义，需要使用 <code>\</code> 进行转义</p>
+<ul>
+<li><code>array\[0\]</code> ：匹配 <code>array[0]</code> 字符串</li>
+<li><code>array[0]</code> ：匹配 <code>array0</code> 字符串</li>
+</ul>
+<p>需要转义使用的元字符</p>
+<table>
+<thead>
+<tr class="header">
+<th>.</th>
+<th>?</th>
+<th>[</th>
+<th>]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>\</td>
+<td></td>
+<td>+</td>
+<td>*</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>{</td>
+<td>}</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>(</td>
+<td>)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>\\</code> 匹配 <code>\</code>，如果只写一个 <code>\</code>
+，可能会看到一个出错信息</p>
+<p>正则表达式分析器会认为这样的正则表达式不完整</p>
+<p><strong>在一个完整的正则表达式里，字符 <code>\</code>
+后面永远跟着另一个字符</strong></p>
+</blockquote>
+<h3 id="匹配空白字符">匹配空白字符</h3>
+<h4 id="空白元字符">空白元字符</h4>
+<table>
+<thead>
+<tr class="header">
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[\b]</code></td>
+<td>回退（并删除）一个字符 （Backspace 键）</td>
+</tr>
+<tr class="even">
+<td><code>\f</code></td>
+<td>换页符</td>
+</tr>
+<tr class="odd">
+<td><code>\n</code></td>
+<td>换行符</td>
+</tr>
+<tr class="even">
+<td><code>\r</code></td>
+<td>回车符</td>
+</tr>
+<tr class="odd">
+<td><code>\t</code></td>
+<td>制表符（Tab 键）</td>
+</tr>
+<tr class="even">
+<td><code>\v</code></td>
+<td>垂直制表符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>回车之所以叫回车，是因为以前的打字机，在打印到行末，需要将打印头移回行首</p>
+<p>所以“回车 + 换行”</p>
+<p>回车实现了将打印头移回行首</p>
+<p>换行实现了将打印头移到下一行</p>
+<p>现在往往用 <code>\n</code>
+一个命令即可实现换行，并将光标移到行首的操作</p>
+</blockquote>
+<ul>
+<li><code>\r\n</code> ：匹配一个 “回车 + 换行” 组合 （Windows
+所使用的文本行结束标签）</li>
+</ul>
+<h3 id="匹配特定的字符类别">匹配特定的字符类别</h3>
+<p>一些常用的字符集合可以用特殊的元字符来代替，从而简化我们的正则表达式</p>
+<h4 id="匹配数字">匹配数字</h4>
+<ul>
+<li><code>\d</code>：匹配任何一个数字字符，等价于
+<code>[0-9]</code></li>
+<li><code>\D</code>：匹配任何一个非数字字符，等价于
+<code>[^0-9]</code></li>
+</ul>
+<h4 id="匹配字母和数字">匹配字母和数字</h4>
+<ul>
+<li><code>\w</code>
+：匹配任何一个数字或字母（不区分大小写）或下划线字符，等价于
+<code>[a-zA-Z0-9_]</code></li>
+<li><code>\W</code>
+：匹配任何一个非字母（不区分大小写）或数字或下划线字符，等价于
+<code>[^a-zA-Z0-9]</code></li>
+</ul>
+<h4 id="匹配空白字符-1">匹配空白字符</h4>
+<ul>
+<li><code>\s</code> ：匹配任何一个空白字符，等价于
+<code>[\f\n\r\t\v]</code></li>
+<li><code>\S</code> ：匹配任何一个非空白字符，等价于
+<code>[^\f\n\r\t\v]</code></li>
+</ul>
+<h4 id="匹配十六进制或八进制">匹配十六进制或八进制</h4>
+<ul>
+<li>添加 <code>\x</code> ：<code>\x0A</code> 对应于 <code>10</code>
+，代表 ASCII 码中 <code>\n</code> ，效果等价</li>
+<li>添加 <code>\0</code> ：<code>\011</code> 对应于 <code>9</code>
+，代表 ASCII 码中 <code>\t</code> ，效果等价</li>
+</ul>
+<h3 id="posix-字符类">POSIX 字符类</h3>
+<p>许多（不是所有）正则表达式都支持的一种简写方式</p>
+<table>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>字符类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[:alnum:]</code></td>
+<td>匹配任何一个字母或数字，等价于 <code>[a-zA-Z0-9]</code></td>
+</tr>
+<tr class="even">
+<td><code>[:alpha:]</code></td>
+<td>匹配任何一个字母，等价于 <code>[a-zA-Z]</code></td>
+</tr>
+<tr class="odd">
+<td><code>[:blank:]</code></td>
+<td>匹配空格或制表符，等价于 <code>[\t ]</code></td>
+</tr>
+<tr class="even">
+<td><code>[:cntrl:]</code></td>
+<td>匹配任何一个 ASCII 控制字符（ASCII 0到31，再加 127）</td>
+</tr>
+<tr class="odd">
+<td><code>[:digit:]</code></td>
+<td>匹配任何一个数字，等价于 <code>[0-9]</code></td>
+</tr>
+<tr class="even">
+<td><code>[:print:]</code></td>
+<td>匹配任何一个可打印字符</td>
+</tr>
+<tr class="odd">
+<td><code>[:graph:]</code></td>
+<td>和 <code>[:print:]</code> 一样，但是不包括空格</td>
+</tr>
+<tr class="even">
+<td><code>[:upper:]</code></td>
+<td>匹配任何一个大写字母，等价于 <code>[A-Z]</code></td>
+</tr>
+<tr class="odd">
+<td><code>[:lower:]</code></td>
+<td>匹配任何一个小写字母，等价于 <code>[a-z]</code></td>
+</tr>
+<tr class="even">
+<td><code>[:punct:]</code></td>
+<td>匹配既不属于 <code>[:alnum:]</code> 也不属于 <code>[:cntrl:]</code>
+的任何一个字符</td>
+</tr>
+<tr class="odd">
+<td><code>[:space:]</code></td>
+<td>匹配任何一个空白字符，包括空格，等价于
+<code>[\f\n\r\t\v ]</code></td>
+</tr>
+<tr class="even">
+<td><code>[:xdigit:]</code></td>
+<td>匹配一个十六进制数字，等价于 <code>[a-fA-F0-9]</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>上面这些字符类，你应该看成是一个整体，也就是字符类中写的就是一个整体的字符</p>
+<p>如果你需要用他们<strong>表示一个十六进制数的集合</strong></p>
+<p>你应该表示为 <code>[[:xdigit:]]</code> ，<code>[]</code>
+表示集合，里面的 <code>[:xdigit:]</code> 表示一个十六进制数</p>
+<p>而不应该写成 <code>[:xdigit:]</code></p>
+</blockquote>
+<h2 id="重复匹配">重复匹配</h2>
+<p>前面介绍了匹配操作，但都是对于一个字符的，如果我们希望匹配模式作用多次，就需要一些操作进行重复匹配</p>
+<h3 id="匹配一个或多个字符">匹配一个或多个字符 +</h3>
+<ul>
+<li><code>[0-9]+</code> ：匹配一个或多个数字字符</li>
+</ul>
+<h3 id="匹配零个或多个字符">匹配零个或多个字符 *</h3>
+<p>匹配一个可有可无的字符该怎么办呢？</p>
+<ul>
+<li><code>B.*Forta</code> ：匹配任何，第一个字母为
+<code>B</code>，后面有或没有若干字符，后接 <code>Forta</code>
+的字符串</li>
+</ul>
+<h3 id="匹配零个或一个字符">匹配零个或一个字符 ？</h3>
+<p>匹配模式，出现 0 次或 1 次</p>
+<ul>
+<li><code>https?</code> ：匹配 <code>http</code> 或
+<code>https</code></li>
+</ul>
+<h3 id="匹配的重复次数">匹配的重复次数</h3>
+<p><code>+</code> 和 <code>*</code> 和 <code>?</code>
+，能够解决很多问题，但是一些情况下，我们需要更加精确的重复次数</p>
+<h4 id="为重复匹配次数设定一个精确的值">为重复匹配次数设定一个精确的值</h4>
+<ul>
+<li><code>a&#123;6&#125;</code> ：重复匹配 6 次 a 字符，等价于
+<code>aaaaaa</code></li>
+<li><code>#[[:xdigit:]]&#123;6&#125;</code> ：匹配合法 RGB 值</li>
+</ul>
+<h4 id="为重复匹配次数设定一个区间">为重复匹配次数设定一个区间</h4>
+<ul>
+<li><code>&#123;2,4&#125;</code> ：最少 2 次，最多 4 次</li>
+<li><code>\d&#123;1,2&#125;[-\/]\d&#123;1,2&#125;[-\/]\d&#123;2,4&#125;</code> ：匹配 “日月年”
+类型合法日期</li>
+</ul>
+<blockquote>
+<p>建议使用 <code>/</code> 的时候，进行转义</p>
+</blockquote>
+<h4 id="匹配至少重复多少次">匹配至少重复多少次</h4>
+<p>省略 <code>&#123;&#125;</code> 中的最大值部分即可</p>
+<ul>
+<li><code>&#123;3,&#125;</code> ：匹配至少 3 次</li>
+</ul>
+<blockquote>
+<p>小心，不要遗漏 <code>,</code></p>
+<p><code>&#123;3&#125;</code> 和 <code>&#123;3,&#125;</code> 是完全不同的意思</p>
+</blockquote>
+<h4 id="防止过度匹配">防止过度匹配</h4>
+<p><code>+</code> 和 <code>*</code>
+是一种贪婪型匹配，他会在满足要求的时候一直匹配，直到行末</p>
+<p>为了限制“贪婪行为”，可以使用这些字符的“懒惰版本”（<strong>尽可能匹配少的字符</strong>）</p>
+<table>
+<thead>
+<tr class="header">
+<th>贪婪型元字符</th>
+<th>懒惰型元字符</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*</code></td>
+<td><code>*?</code></td>
+</tr>
+<tr class="even">
+<td><code>+</code></td>
+<td><code>+?</code></td>
+</tr>
+<tr class="odd">
+<td><code>&#123;n,&#125;</code></td>
+<td><code>&#123;n,&#125;?</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="位置匹配">位置匹配</h2>
+<p>字符可以出现在文本的任意位置</p>
+<p><strong>某些场合只需要对某段文本的特定位置进行匹配</strong>，这就需要位置匹配了</p>
+<h3 id="边界">边界</h3>
+<p>边界限定符，也就是在正则表达式里，用一些特殊的元字符来表明我忙呢想让匹配操作在什么位置（边界）发生</p>
+<h4 id="单词边界">单词边界</h4>
+<ul>
+<li><code>\b</code> ：匹配一个单词的开始或结尾</li>
+<li><code>\bpro</code> ：匹配以 <code>pro</code> 前缀开头的单词</li>
+<li><code>ous\b</code> ：匹配以 <code>ous</code> 后缀结尾的单词</li>
+<li><code>\bdictionary\b</code> ：匹配一个完整单词
+<code>dictionary</code></li>
+</ul>
+<blockquote>
+<p><code>\b</code> 匹配的是单词边界，</p>
+<p>一个用来构成单词的字符和一个不能用来构成单词的字符之间</p>
+<p><code>\b</code> 匹配且只匹配一个位置，不匹配任何字符</p>
+<p>例如 <code>\bcat\b</code> 匹配的是 <code>cat</code> 3 个字符，而不是
+5 个字符</p>
+</blockquote>
+<ul>
+<li><code>\B</code> ：匹配一个不是单词边界</li>
+<li><code>\B - \B</code> ：匹配一个左右两边不是单词边界的 <code>-</code>
+（连字符）</li>
+</ul>
+<blockquote>
+<p>上面这个例子</p>
+<p><code>nine-digit</code> 和 <code>pass-key</code> 中的 <code>-</code>
+（连字符）不会被匹配</p>
+<p>只会匹配 <code>color - coded</code> 这里的 <code>-</code>
+（连字符）</p>
+</blockquote>
+<h4 id="字符串边界">字符串边界</h4>
+<p>字符串边界用来进行字符串有关的位置匹配（字符串开头，字符串结束，整个字符串）</p>
+<ul>
+<li><code>^</code> ：匹配字符串开头</li>
+<li><code>$</code> ：匹配字符串结尾</li>
+</ul>
+<blockquote>
+<p><code>^</code> 在之前能做到对字符集合取反，现在也能匹配字符串开头</p>
+<p>这种元字符有多种用途</p>
+<p>只有 <code>^</code> 出现在一个字符集合里 （被放在 <code>[</code> 和
+<code>]</code> 之间），表示<strong>求非</strong>的用途</p>
+<p>如果是在一个字符集合的外面，并位于一个模式的开头， <code>^</code>
+将匹配字符串的开头</p>
+</blockquote>
+<ul>
+<li><code>^\s*&lt;\?xml.*?\?&gt;</code> ：匹配合法 XML 文档开头</li>
+</ul>
+<blockquote>
+<p><code>^</code> ：匹配一个字符串的开头位置</p>
+<p><code>^\s*</code>
+：匹配一个字符串的开头位置和随后的零个或多个空白字符</p>
+<p><code>.*?</code> ：匹配零个或多个任意字符，且是懒惰型</p>
+<p><code>\s*$</code> ：匹配一个字符串结尾处的零个或多个空白字符</p>
+</blockquote>
+<h3 id="分行匹配模式-multiline-mode">分行匹配模式 multiline mode</h3>
+<p><code>^</code> 匹配一个字符串的开头，<code>$</code>
+匹配一个字符串的结尾</p>
+<p>许多正则表达式支持使用一些特殊的元字符去改变另外一些元字符行为的做法</p>
+<p><code>(?m)</code>
+：记号就是一个能够改变其他元字符行为的元字符序列，启用分行匹配模式</p>
+<p><code>(?m)^\s*//.*$</code> ：匹配 <code>//</code>
+注释后面的所有内容</p>
+<blockquote>
+<p><code>(?m)</code> 必须出现在整个模式的最前面</p>
+<p><strong>分行匹配模式</strong>将使得正则表达式引擎把行分隔符当做一个字符串分隔符来对待（目前大多数语言和编辑器默认启用多行模式）</p>
+<p>该模式下：</p>
+<p><code>^</code>
+不仅匹配正常的字符串开头，还匹配行分隔符（换行符）后面的开始位置（这个位置不可见）</p>
+<p><code>$</code>
+不仅匹配正常的字符串结尾，还将匹配行分隔符（换行符）后面的结束位置</p>
+</blockquote>
+<h2 id="子表达式-subexpression">子表达式 subexpression</h2>
+<p>有些短语，虽然由多个单词构成，但其实是一个整体</p>
+<p>为了让这些单词显示在同一行上，在这些短语的单词之间使用<strong>非换行型空格</strong>（<code>&amp;nbsp;</code>）</p>
+<p>如果我们现在想把 <code>&amp;nbsp;</code>
+连续两次或更多次的重复出现找出来</p>
+<blockquote>
+<p><code>&amp;nbsp;&#123;2,&#125;</code> ：这样的正则表达式，不能正确实现目标</p>
+<p>因为 <code>&#123;2,&#125;</code> 前紧跟着 <code>;</code></p>
+<p>所以这个模式只能匹配 <code>;;;;;</code> 类似的字符串</p>
+</blockquote>
+<p>为了解决这个问题，使用子表达式，将子表达式当作一个独立元素来使用</p>
+<p>使用 <code>(</code> 和 <code>)</code> 括起来子表达式</p>
+<ul>
+<li><code>(&amp;nbsp;)&#123;2,&#125;</code> ：匹配两个或更多个
+<code>&amp;nbsp;</code> 字符串</li>
+<li><code>(\d&#123;1,3&#125;\.)&#123;3&#125;\d&#123;1,3&#125;</code> ：匹配 IP 地址（不一定合法）</li>
+<li><code>(19|20)\d&#123;2&#125;</code> ：匹配 19 开头或 20 开头的 4 位数年份</li>
+</ul>
+<blockquote>
+<p><code>|</code> 字符表示<strong>或</strong>的关系</p>
+</blockquote>
+<h3 id="子表达式嵌套">子表达式嵌套</h3>
+<p>子表达式允许多重嵌套</p>
+<p>理论没有嵌套层数限制，但是过多的嵌套就意味着降低了正则表达式的可读性</p>
+<p>对于 <code>(\d&#123;1,3&#125;\.)&#123;3&#125;\d&#123;1,3&#125;</code> 这个正则表达式</p>
+<p>他能够找出正确的 IP 地址</p>
+<p>但是，同样能够找出 <code>999.12.255.1</code> 这样非法的 IP 地址</p>
+<p>可惜，我们无法使用数学运算符</p>
+<p>对于合法 IP 地址（每一组数都在 0 - 255 之间）</p>
+<p>拆分匹配规则</p>
+<ul>
+<li>任何一个 1 位或 2 位数字（0 - 9，10 - 99）</li>
+<li>任何一个以 1 开头的 3 位数字（100 - 199）</li>
+<li>任何一个以 2 开头，第 2 位数字在 0 ~ 4 之间的 3 位数字（200 -
+249）</li>
+<li>任何一个以 25 开头，第 3 位数字在 0 ~ 5 之间的 3 位数字 （250 -
+255）</li>
+</ul>
+<p>利用子表达式嵌套</p>
+<ul>
+<li><code>(((\d&#123;1,2&#125;)|(1\d&#123;2&#125;)|(2[0-4]\d)|(25[0-5]))\.)&#123;3&#125;((\d&#123;1,2&#125;)|(1\d&#123;2&#125;)|(2[0-4]\d)|(25[0-5]))</code>
+：匹配合法 IP 地址</li>
+</ul>
+<h3 id="回溯引用">回溯引用</h3>
+<h4 id="前后一致匹配">前后一致匹配</h4>
+<blockquote>
+<p>回溯引用 backreference</p>
+</blockquote>
+<p>对于文本中重复打错的部分</p>
+<p>“... are are repeated, and and ...”</p>
+<ul>
+<li><code>[ ]+(\w+)[ ]+\1</code> ：匹配打错的重复的单词</li>
+</ul>
+<blockquote>
+<p><code>[ ]+</code> ：匹配多个空格</p>
+<p><code>(\w+)</code>
+：匹配一个单词，用子表达式表示，目的是为了后面方便引用</p>
+<p><code>[ ]+</code> ：匹配多个空格</p>
+<p><code>\1</code> ：回溯引用，引用的就是前面划分出来的子表达式
+<code>(\w+)</code>，就像是一个变量</p>
+</blockquote>
+<ul>
+<li><code>&lt;[hH]([1-6])&gt;.*?&lt;/[hH]\1&gt;</code> ：匹配合法 HTML
+标签，<code>&lt;H1&gt;  &lt;/H1&gt;</code></li>
+</ul>
+<blockquote>
+<p>回溯引用匹配通常从 1 开始计数</p>
+<p>许多实现里，第 0
+个匹配（<code>\0</code>）可以用来代表整个正则表达式</p>
+</blockquote>
+<h4 id="替换操作">替换操作</h4>
+<p>替换操作需要两个正则表达式</p>
+<p>一个用来给出搜索模式</p>
+<p>一个用来给出匹配文本的替换模式</p>
+<p>回溯引用可以跨模式使用，在第一个模式里被匹配的子表达式可以用在第二个模式里</p>
+<blockquote>
+<p>回溯引用语法在不同的正则表达式中语法有很大差异，例如</p>
+<p>JavaScript 需要用 <code>$</code> 代替 <code>\</code></p>
+<p>typora 也需要将 <code>$</code> 代替 <code>\</code></p>
+</blockquote>
+<ul>
+<li><code>(\d&#123;3&#125;)(-)(\d&#123;3&#125;)(-)(\d&#123;4&#125;)</code> ：匹配类似于
+<code>555-333-6594</code> 电话号码的字符串</li>
+<li><code>($1) $3-$5</code> ：将上面的匹配结果，替换为这类形式
+<code>(555) 333-6594</code></li>
+</ul>
+<p>大小写转换</p>
+<table>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 90%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>\E</code></td>
+<td>结束 <code>\L</code> 或 <code>\U</code> 转换（结束转换标记）</td>
+</tr>
+<tr class="even">
+<td><code>\l</code></td>
+<td>把下一个字符转换为小写</td>
+</tr>
+<tr class="odd">
+<td><code>\u</code></td>
+<td>把下一个字符转换为大写</td>
+</tr>
+<tr class="even">
+<td><code>\L</code></td>
+<td>把 <code>\L</code> 和 <code>\E</code>
+之间的字符全部转换为小写（之后一直到结束标记前的字符）</td>
+</tr>
+<tr class="odd">
+<td><code>\U</code></td>
+<td>把 <code>\U</code> 和 <code>\E</code>
+之间的字符全部转换为大写（之后一直到结束标记前的字符）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="前后查找-lookaround">前后查找 lookaround</h2>
+<p>上面的正则表达式都是用来匹配文本的，但是有时候我们还需要用正则表达式标记要匹配的文本的位置（而不仅仅是文本本身）</p>
+<p>这就引出了<strong>前后查找：</strong>对某一位置的前、后内容进行查找</p>
+<h3 id="向前查找">向前查找 ?=</h3>
+<p>对于一系列网址</p>
+<p><code>http://www.123.com/</code></p>
+<p><code>https://mail.123.com/</code></p>
+<p><code>ftp://ftp.123.com/</code></p>
+<ul>
+<li><code>.+(:)</code> ：匹配 <code>http:</code> ，<code>https:</code>
+，<code>ftp:</code></li>
+<li><code>.+(?=:)</code> ：只在 <code>:</code>
+字符，向前匹配任意字符，匹配 <code>http</code> ，<code>https</code>
+，<code>ftp</code></li>
+</ul>
+<blockquote>
+<p>并不会“消费”前后查找匹配的字符</p>
+</blockquote>
+<h3 id="向后查找">向后查找 ?&lt;=</h3>
+<p>对于一些价格</p>
+<p><code>$23.45</code></p>
+<p><code>$0.45</code></p>
+<p><code>$23</code></p>
+<ul>
+<li><code>[0-9.]+</code> ：匹配所有的数字和小数点</li>
+<li><code>(?&lt;=\$)[0-9.]+</code> ：只在 <code>$</code>
+字符，向后匹配数字和小数点</li>
+</ul>
+<h3 id="前后结合">前后结合</h3>
+<p>你当然可以对一个特定字符向后查找，也可以对一个特定字符向前查找</p>
+<p><code>&lt;TITLE&gt;abcdefg. Ekko. Com&lt;/TITLE&gt;</code></p>
+<ul>
+<li><code>(?&lt;=(&lt;[tT][iI][tT][lL][eE]&gt;)).*(?=(&lt;/[tT][iI][tT][lL][eE]&gt;))</code>
+：匹配位于 <code>&lt;TITLE&gt;</code> 和 <code>&lt;/TITLE&gt;</code>
+中的字符串</li>
+</ul>
+<h3 id="对前后查找取非">对前后查找取非</h3>
+<p>同样，我也可以不匹配某个字符后的数字</p>
+<p>下面这个例子，我只希望匹配数量，而不是金额</p>
+<p><code>I paid $40 for 100 apples, 50 oranges. I saved $5</code></p>
+<ul>
+<li><code>\b(?&lt;!\$)\d+\b</code> ：匹配所有不是在 <code>$</code>
+字符后的数字</li>
+</ul>
+<blockquote>
+<p>注意这里的 <code>\b</code> 如果没有这个边界限制，那么
+<code>$40</code> 的 <code>0</code> 也会被匹配</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>操作符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>?=</code></td>
+<td>正向前查找</td>
+</tr>
+<tr class="even">
+<td><code>?!</code></td>
+<td>负向前查找</td>
+</tr>
+<tr class="odd">
+<td><code>?&lt;=</code></td>
+<td>正向后查找</td>
+</tr>
+<tr class="even">
+<td><code>?&lt;!</code></td>
+<td>负向后查找</td>
+</tr>
+</tbody>
+</table>
+<h2 id="嵌入条件">嵌入条件</h2>
+<blockquote>
+<p>威力强大，但不经常用到</p>
+<p>而且并不是所有正则表达式都支持</p>
+</blockquote>
+<h3 id="回溯引用条件">回溯引用条件</h3>
+<p>只在前一个子表达式搜索取得成功的情况下才允许使用一个表达式</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"><i class="fa fa-tag"></i> 正则表达式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/10062/" rel="prev" title="如何进行TDD">
+      <i class="fa fa-chevron-left"></i> 如何进行TDD
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA-tips"><span class="nav-number">1.</span> <span class="nav-text">几个 tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F-pattern"><span class="nav-number">1.1.</span> <span class="nav-text">模式 pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%8C%B9%E9%85%8D%E7%BB%93%E6%9E%9C"><span class="nav-number">1.2.</span> <span class="nav-text">多个匹配结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E6%95%8F%E6%84%9F"><span class="nav-number">1.3.</span> <span class="nav-text">大小写敏感</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%97%9B%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">痛点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%AF%E5%A5%BD%E7%9A%84%E7%BC%96%E7%A0%81%E4%B9%A0%E6%83%AF"><span class="nav-number">1.5.</span> <span class="nav-text">良好的编码习惯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D"><span class="nav-number">2.</span> <span class="nav-text">匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%BA%AF%E6%96%87%E6%9C%AC"><span class="nav-number">2.1.</span> <span class="nav-text">匹配纯文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E5%AD%97%E7%AC%A6"><span class="nav-number">2.2.</span> <span class="nav-text">匹配任意字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="nav-number">2.3.</span> <span class="nav-text">匹配特殊字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%AD%E7%9A%84%E6%9F%90%E4%B8%80%E4%B8%AA"><span class="nav-number">2.4.</span> <span class="nav-text">匹配多个字符中的某一个</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E6%95%B0%E5%AD%97%E5%92%8C%E5%AD%97%E6%AF%8D"><span class="nav-number">2.5.</span> <span class="nav-text">匹配数字和字母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%8F%8D%E5%8C%B9%E9%85%8D"><span class="nav-number">2.6.</span> <span class="nav-text">取反匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E5%AD%97%E7%AC%A6-metacharacter"><span class="nav-number">2.7.</span> <span class="nav-text">元字符 metacharacter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89"><span class="nav-number">2.7.1.</span> <span class="nav-text">转义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6"><span class="nav-number">2.8.</span> <span class="nav-text">匹配空白字符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E7%99%BD%E5%85%83%E5%AD%97%E7%AC%A6"><span class="nav-number">2.8.1.</span> <span class="nav-text">空白元字符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%89%B9%E5%AE%9A%E7%9A%84%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%88%AB"><span class="nav-number">2.9.</span> <span class="nav-text">匹配特定的字符类别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E6%95%B0%E5%AD%97"><span class="nav-number">2.9.1.</span> <span class="nav-text">匹配数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E5%AD%97%E6%AF%8D%E5%92%8C%E6%95%B0%E5%AD%97"><span class="nav-number">2.9.2.</span> <span class="nav-text">匹配字母和数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6-1"><span class="nav-number">2.9.3.</span> <span class="nav-text">匹配空白字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%88%96%E5%85%AB%E8%BF%9B%E5%88%B6"><span class="nav-number">2.9.4.</span> <span class="nav-text">匹配十六进制或八进制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#posix-%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="nav-number">2.10.</span> <span class="nav-text">POSIX 字符类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D%E5%8C%B9%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">重复匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E4%B8%80%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="nav-number">3.1.</span> <span class="nav-text">匹配一个或多个字符 +</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E9%9B%B6%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="nav-number">3.2.</span> <span class="nav-text">匹配零个或多个字符 *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E9%9B%B6%E4%B8%AA%E6%88%96%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="nav-number">3.3.</span> <span class="nav-text">匹配零个或一个字符 ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E7%9A%84%E9%87%8D%E5%A4%8D%E6%AC%A1%E6%95%B0"><span class="nav-number">3.4.</span> <span class="nav-text">匹配的重复次数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E9%87%8D%E5%A4%8D%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0%E8%AE%BE%E5%AE%9A%E4%B8%80%E4%B8%AA%E7%B2%BE%E7%A1%AE%E7%9A%84%E5%80%BC"><span class="nav-number">3.4.1.</span> <span class="nav-text">为重复匹配次数设定一个精确的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E9%87%8D%E5%A4%8D%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0%E8%AE%BE%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%8C%BA%E9%97%B4"><span class="nav-number">3.4.2.</span> <span class="nav-text">为重复匹配次数设定一个区间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E8%87%B3%E5%B0%91%E9%87%8D%E5%A4%8D%E5%A4%9A%E5%B0%91%E6%AC%A1"><span class="nav-number">3.4.3.</span> <span class="nav-text">匹配至少重复多少次</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E8%BF%87%E5%BA%A6%E5%8C%B9%E9%85%8D"><span class="nav-number">3.4.4.</span> <span class="nav-text">防止过度匹配</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E5%8C%B9%E9%85%8D"><span class="nav-number">4.</span> <span class="nav-text">位置匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C"><span class="nav-number">4.1.</span> <span class="nav-text">边界</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E8%AF%8D%E8%BE%B9%E7%95%8C"><span class="nav-number">4.1.1.</span> <span class="nav-text">单词边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BE%B9%E7%95%8C"><span class="nav-number">4.1.2.</span> <span class="nav-text">字符串边界</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A1%8C%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%BC%8F-multiline-mode"><span class="nav-number">4.2.</span> <span class="nav-text">分行匹配模式 multiline mode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F-subexpression"><span class="nav-number">5.</span> <span class="nav-text">子表达式 subexpression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%B5%8C%E5%A5%97"><span class="nav-number">5.1.</span> <span class="nav-text">子表达式嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E5%BC%95%E7%94%A8"><span class="nav-number">5.2.</span> <span class="nav-text">回溯引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E4%B8%80%E8%87%B4%E5%8C%B9%E9%85%8D"><span class="nav-number">5.2.1.</span> <span class="nav-text">前后一致匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.2.</span> <span class="nav-text">替换操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E6%9F%A5%E6%89%BE-lookaround"><span class="nav-number">6.</span> <span class="nav-text">前后查找 lookaround</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E5%89%8D%E6%9F%A5%E6%89%BE"><span class="nav-number">6.1.</span> <span class="nav-text">向前查找 ?&#x3D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E5%90%8E%E6%9F%A5%E6%89%BE"><span class="nav-number">6.2.</span> <span class="nav-text">向后查找 ?&lt;&#x3D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E7%BB%93%E5%90%88"><span class="nav-number">6.3.</span> <span class="nav-text">前后结合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%89%8D%E5%90%8E%E6%9F%A5%E6%89%BE%E5%8F%96%E9%9D%9E"><span class="nav-number">6.4.</span> <span class="nav-text">对前后查找取非</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E6%9D%A1%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">嵌入条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E5%BC%95%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">7.1.</span> <span class="nav-text">回溯引用条件</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ekko"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ekko</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我来人间凑个数(这是个集合)
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://monster-siren.hypergryph.com/" title="https:&#x2F;&#x2F;monster-siren.hypergryph.com&#x2F;" rel="noopener" target="_blank">塞壬唱片</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://imgod.me/" title="https:&#x2F;&#x2F;imgod.me&#x2F;" rel="noopener" target="_blank">imgod</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ekko</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">42k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:34</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><script color="119,119,119" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
